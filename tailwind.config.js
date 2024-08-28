@@ -19,7 +19,15 @@ export default {
           sm: "3rem",
         },
       },
+      backgroundImage: {
+        'custom-gradient': 'linear-gradient(rgba(0, 13, 107, 0.6), rgba(0, 13, 107, 0.6)), url("src/assets/drive.jpg")',
+        'gradient-orange-red': 'linear-gradient(#ef621c, #e1424e)',
+        'gradient-green': 'linear-gradient(#01d293, #56c57a)',
+      },
+      backgroundSize: {
+        'cover': 'cover',
+      },
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 };

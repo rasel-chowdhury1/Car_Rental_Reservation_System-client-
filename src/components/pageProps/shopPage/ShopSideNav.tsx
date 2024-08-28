@@ -8,9 +8,9 @@ const ShopSideNav = () => {
   return (
     <div className="w-full flex flex-col gap-6">
       <h1>hello sidebar</h1>
-      <Category icons={false} />
+      {/* <Category icons={false} /> */}
       {/* <Brand /> */}
-      <Price />
+      {/* <Price /> */}
     </div>
   );
 };

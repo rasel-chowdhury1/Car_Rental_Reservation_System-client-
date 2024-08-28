@@ -2,9 +2,19 @@
 import { FaUserCircle } from "react-icons/fa";
 
 import { Navlinks } from "./Navbar";
+import { Link } from "react-router-dom";
+import { IoMdLogIn } from "react-icons/io";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
+import { logout, useCurrentUser } from "../../redux/features/auth/authSlice";
 
-const ResponsiveMenu = ({ showMenu }) => {
-  console.log("showMenu", showMenu);
+const ResponsiveMenu = ({ showMenu }: {showMenu: boolean}) => {
+  const user = useAppSelector(useCurrentUser)
+  const dispatch = useAppDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout())
+  }
+
   return (
     <div
       className={`${
@@ -23,17 +33,56 @@ const ResponsiveMenu = ({ showMenu }) => {
           <ul className="space-y-4 text-xl">
             {Navlinks.map((data) => (
               <li>
-                <a href={data.link} className="mb-5 inline-block">
+                <Link to={data.link} className="mb-5 inline-block">
                   {data.name}
-                </a>
+                </Link>
               </li>
             ))}
+
+{user ? (
+  <>
+  <li>
+                  <Link to="/profile" className="mb-5 inline-block">
+                    Profile
+                  </Link>
+                </li>
+                <li>
+                <Link
+                  to="/dashboard"
+                 className="mb-5 inline-block"
+                >
+                  Dashboard
+                </Link>
+              </li>
+              <li>
+                        <button
+                          onClick={handleLogout}
+                          className="mb-5 inline-block"
+                        >
+                          Logout
+                        </button>
+                      </li>
+  </>
+                
+                
+              ) : (
+                <li className="py-4">
+                  <Link
+                    to="/login"
+                    className="text-lg font-medium hover:text-primary py-2 hover:border-b-2 hover:border-primary transition-colors duration-500"
+                  >
+                    <IoMdLogIn
+                    className="text-3xl cursor-pointer"
+                  />
+                  </Link>
+                </li>
+              )}
           </ul>
         </nav>
       </div>
       <div className="footer">
         <h1>
-          Made with ❤ by <a href="https://dilshad-ahmed.github.io/">Dilshad</a>{" "}
+          Made with ❤ by <a>Rasel</a>{" "}
         </h1>
       </div>
     </div>
