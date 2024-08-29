@@ -60,7 +60,7 @@ const SpecificUserBooking = () => {
                     <td>{ele?.date}</td>
                     <td>{ele?.startTime}</td>
                     <th>
-                    <Link to={`/dashboard/return/${ele._id}`} className="btn btn-ghost btn-xs">return</Link>
+                    {ele?.endTime ? "Done" : <Link to={`/dashboard/return/${ele._id}`} className="btn btn-ghost btn-xs">return</Link>}
                     </th>
                 </tr>
                 ))}

@@ -6,7 +6,7 @@ const CarsManagementApi = baseApi.injectEndpoints({
       query: (args) => {
         console.log(args);
         const params = new URLSearchParams();
-
+ 
         if (args) {
           args.forEach((item) => {
             params.append(item.name, item.value as string);
@@ -33,7 +33,23 @@ const CarsManagementApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['cars'],
     }),
+    updateCar: builder.mutation({
+      query: ({id,data}) => ({
+        url: `/cars/${id}`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: ['cars'],
+    }),
+    deleteCar: builder.mutation({
+      query: (id) => ({
+        url: `/cars/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['cars'],
+    }),
+
   }),
 });
 
-export const {useGetAllCarsQuery, useCreateCarMutation} = CarsManagementApi;
+export const {useGetAllCarsQuery, useCreateCarMutation, useUpdateCarMutation, useDeleteCarMutation} = CarsManagementApi;

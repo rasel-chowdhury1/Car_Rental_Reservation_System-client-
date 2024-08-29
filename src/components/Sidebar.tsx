@@ -22,7 +22,7 @@ const Sidebar = () => {
     { id: 1, path: "/", name: "Dashboard", icon: LuBox },
     { id: 2, path: "booking", name: "Booking List", icon: RiReservedLine},
     { id: 3, path: "/dashboard/payment", name: "Payment", icon: LuMessageSquare },
-    { id: 4, path: "/profile", name: "Profile", icon: FaUser },
+    { id: 4, path: "profile", name: "Profile", icon: FaUser },
     
   ];
 
@@ -39,10 +39,12 @@ const Sidebar = () => {
   return (
     <div className="w-16 md:w-56 fixed left-0 top-0 z-10 h-screen boder-r pt-8 px-4 bg-white">
       {/* logo */}
+      <Link to="/">
       <div className="mb-8 flex items-center gap-2">
         <FaCar />
         <h2 className="text-center font-bold">Car Rental System</h2>
       </div>
+      </Link>
       {/* logo */}
 
       {/* Navigation Links */}

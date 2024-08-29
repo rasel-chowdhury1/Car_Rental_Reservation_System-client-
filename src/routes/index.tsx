@@ -4,7 +4,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import BookingCar from "../pages/BookingCar";
-import About from "../pages/About";
+import About from "../pages/AboutPage/About.js";
 import ErrrorPage from "../pages/ErrroPage";
 import Car from "../pages/Car";
 import CarDetails from "../pages/CarDetails";
@@ -13,10 +13,11 @@ import DashboardHome from "../pages/Dashboard/DashboardHome";
 import UserManagement from "../pages/Dashboard/UserManagement";
 import CarManagement from "../pages/Dashboard/CarManagement";
 import CreateCar from "../pages/Dashboard/CreateCar";
-import Profile from "../components/User/Profile.jsx";
 import SpecificUserBooking from "../pages/Dashboard/SpecificUserBooking.js";
 import CheckOutPage from "../pages/CheckoutPage.js";
-
+import TermsCondition from "../pages/TermsCondition/TermsCondition.js"
+import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy.js";
+import Contact from "../pages/Contact/Contact.js";
 export const router = createBrowserRouter([
     {
       path: "/",
@@ -50,6 +51,18 @@ export const router = createBrowserRouter([
         {
             path: "/booking-car",
             element: <BookingCar />
+        },
+        {
+          path: "/terms&condition",
+          element:<TermsCondition />,
+        },
+        {
+          path: "/privacypolicy",
+          element: <PrivacyPolicy />,
+        },
+        {
+          path: "/contact",
+          element: <Contact />
         }
       ],
     },
@@ -73,10 +86,7 @@ export const router = createBrowserRouter([
           path: "manage-cars",
           element: <CarManagement/>
         },
-        {
-          path: "profile",
-          element: <Profile />
-        },
+    
         {
           path: "booking",
           element: <SpecificUserBooking />

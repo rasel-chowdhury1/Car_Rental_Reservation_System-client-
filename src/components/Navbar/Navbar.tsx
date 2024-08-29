@@ -5,7 +5,7 @@ import ResponsiveMenu from "./ResponsiveMenu";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { logout, useCurrentUser } from "../../redux/features/auth/authSlice";
 import { Link } from "react-router-dom";
-import { FaUserCircle } from "react-icons/fa";
+import { FaCar, FaUserCircle } from "react-icons/fa";
 import { IoMdLogIn } from "react-icons/io";
 
 export const Navlinks = [
@@ -14,20 +14,21 @@ export const Navlinks = [
     name: "HOME",
     link: "",
   },
+  
+  {
+    id: 3,
+    name: "CARLIST",
+    link: "/cars",
+  },
   {
     id: 2,
     name: "ABOUT US",
     link: "/about",
   },
   {
-    id: 3,
-    name: "BOOKING",
-    link: "/booking-car",
-  },
-  {
     id: 4,
     name: "CONTACT",
-    link: "/#contact",
+    link: "/contact",
   },
   
 ];
@@ -60,9 +61,10 @@ const Navbar = ({ theme, setTheme}: {theme: String, setTheme:Function}) => {
     >
       <div className="container py-2 md:py-0">
         <div className="flex justify-between items-center">
-          <div>
-            <span className="text-3xl font-bold font-serif">Car Rental</span>
-          </div>
+          <Link to="/" className="flex items-center gap-2">
+          <FaCar className="text-3xl leading-none hover:text-primary" />
+          <span className="text-3xl font-bold font-serif leading-none hover:text-primary">QuickCar</span>
+          </Link>
           <nav className="hidden md:block">
             <ul className="flex items-center gap-8">
               {Navlinks.map(({ id, name, link }) => (

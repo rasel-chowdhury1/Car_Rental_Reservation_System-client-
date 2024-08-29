@@ -49,7 +49,15 @@ const CarsManagementApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['booking'],
     }),
+    returnbookingCar: builder.mutation({
+      query: (data) => ({
+        url: '/bookings',
+        method: 'PATCH',
+        body: data,
+      }),
+      invalidatesTags: ['booking'],
+    })
   }),
 });
 
-export const {useMyBookingQuery, useSingleBookingQuery, useBookingCarMutation} = CarsManagementApi;
+export const {useMyBookingQuery, useSingleBookingQuery, useBookingCarMutation, useReturnbookingCarMutation} = CarsManagementApi;

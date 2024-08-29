@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { useSingleBookingQuery } from "../redux/features/booking/CarBookingManagementApi";
+import { useReturnbookingCarMutation, useSingleBookingQuery } from "../redux/features/booking/CarBookingManagementApi";
 import { useParams } from "react-router-dom";
 import getCurrentDateTime from "../utils/getCurrentDateTime";
 import { useAppSelector } from "../redux/hook";
 import { useCurrentUser } from "../redux/features/auth/authSlice";
+import axios from "axios";
+import Swal from "sweetalert2";
 // import { useAppSelector } from "../redux/hooks";
 // import { useCreteOrderMutation } from "../redux/api/api";
 
@@ -11,14 +13,15 @@ export default function CheckOutPage() {
     const {id} = useParams()
     console.log({id})
     const { data: singleBookingData, error, isLoading } = useSingleBookingQuery(id);
-    const user = useAppSelector(useCurrentUser)
+    const user = useAppSelector(useCurrentUser);
+    const [returnBookingCar] = useReturnbookingCarMutation()
     if(isLoading){
         return <p>data is loading...</p>
     }
 
     
     const {date: endDate, currentTime: endTime} = getCurrentDateTime();
-    const {startTime, date: issueDate, car} = singleBookingData?.data?.data || {};
+    const {startTime, date: issueDate, car,_id: bookingId} = singleBookingData?.data?.data || {};
     const {pricePerHour: perHour} = car;
     
 
@@ -39,26 +42,15 @@ export default function CheckOutPage() {
     e.preventDefault();
     console.log(e.target.name.value)
   
-  
-  console.log({totalCost})
-    // const data = {
-    //   user,
-    //   products: cartItems.map((item) => ({
-    //     product: item._id,
-    //     quantity: item.quantity,
-    //   })),
-    // };
-    // try {
-    //   const res = await createOrder(data).unwrap();
-    //   if (res.success) {
-    //     console.log(res)
-    //     window.location.href = res.data.payment_url;
-    //   } else {
-    //     console.error('Order creation failed:', res.message);
-    //   }
-    // } catch (error) {
-    //   console.log(error)
-    // }
+    const data = {bookingId, endTime: endDate, totalCost,user };
+      console.log({data})
+      try {
+        const res = await returnBookingCar(data).unwrap();
+        console.log({res})
+        window.location.href = res.data.payment_url;
+      } catch (error) {
+        console.log({error})
+      }
   };
 
   return (
