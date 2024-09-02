@@ -32,7 +32,7 @@ const PaymentHistory = () => {
             </thead>
             <tbody>
             {/* row 1 */}
-            {paymentData?.data.map((ele) => (
+            {paymentData?.data.map((ele: any) => (
                 <tr>
                 <th>
                 <label>

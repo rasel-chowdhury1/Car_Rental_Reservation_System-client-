@@ -9,7 +9,7 @@ const UserManagement = () => {
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error loading users: {error.message}</p>;
 
-  const handleRoleChange = async (userId, newRole) => {
+  const handleRoleChange = async (userId: string, newRole: string) => {
     try {
       const res = await updateUserRole({ userId, role: newRole }).unwrap();
       setSelectedRole((prev) => ({ ...prev, [userId]: newRole }));

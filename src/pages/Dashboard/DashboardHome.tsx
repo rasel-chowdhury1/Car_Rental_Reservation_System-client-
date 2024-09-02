@@ -3,9 +3,11 @@ import { MdLibraryBooks } from "react-icons/md";
 import { IoStarOutline,IoHomeOutline } from "react-icons/io5";
 import { TiShoppingCart } from "react-icons/ti";
 import { FaPhone } from "react-icons/fa6";
+import { useAppSelector } from "../../redux/hook";
+import { useCurrentUser } from "../../redux/features/auth/authSlice";
 
 const DashboardHome = () => {
-    const user = undefined;
+    const user = useAppSelector(useCurrentUser);
     return (
         <div className='m-8'>
             <h3 className=' text-2xl my-4 font-bold'>Welcome to QuickCar</h3>
@@ -22,7 +24,7 @@ const DashboardHome = () => {
            </div>
 
            <div className=' flex h-[300px]'>
-             <div className='w-full grid grid-cols-1 gap-4 content-center bg-[#FFEDD5] border-r-4 border-orange-500 text-center content-center'>
+             <div className='w-full grid grid-cols-1 gap-4  bg-[#FFEDD5] border-r-4 border-orange-500 text-center content-center'>
               
                <div className="w-28 h-28 rounded-full border-2 border-orange-400 mx-auto mb-4 bg-white">
                   

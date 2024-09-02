@@ -24,22 +24,23 @@ const Sidebar = () => {
     setActiveLink(index);
   };
   const USER_LINKS = [
-    { id: 1, path: "/", name: "Dashboard", icon: LuBox },
-    { id: 2, path: "booking", name: "Booking List", icon: RiReservedLine},
-    { id: 3, path: "payment-history", name: "Payment", icon: LuMessageSquare },
-    { id: 4, path: "profile", name: "Profile", icon: FaUser },
+    { id: 1, path: "/", name: "Dashboard", icon: <LuBox/> },
+    { id: 2, path: "booking", name: "Booking List", icon: <RiReservedLine/>},
+    { id: 3, path: "payment-history", name: "Payment", icon: <LuMessageSquare/> },
+    { id: 4, path: "profile", name: "Profile", icon: <FaUser/> },
     
   ];
 
   const ADMIN_LINKS = [
-    { id: 1, path: "/dashboard", name: "Dashboard", icon: LuBox },
-    { id: 2, path: "/dashboard/user-management", name: "User Management", icon: TbUsers},
-    { id: 3, path: "/dashboard/manage-cars", name: "Manage Cars", icon: FaCar},
-    { id: 4, path: "/dashboard/create-car", name: "Create a Car", icon: FaCar},
+    { id: 1, path: "/dashboard", name: "Dashboard", icon: <LuBox /> },
+    { id: 2, path: "/dashboard/user-management", name: "User Management", icon: <TbUsers />},
+    { id: 3, path: "/dashboard/manage-cars", name: "Manage Cars", icon: <FaCar />},
+    { id: 4, path: "/dashboard/create-car", name: "Create a Car", icon: <FaCar />},
+    { id: 8, path: "/dashboard/manage-booking", name: "Manage Booking", icon: <FaCar />},
 
-    { id: 5, path: "/dashboard/return-cars", name: "Manage Return Cars", icon: LuMessageSquare },
-    { id: 6, path: "/dashboard/report", name: "Report", icon: BiSolidReport },
-    { id: 7, path: "/dashboard/profile", name: "Profile", icon: FaUser },
+    { id: 5, path: "/dashboard/return-cars", name: "Manage Return Cars", icon: <LuMessageSquare /> },
+    { id: 6, path: "/dashboard/report", name: "Report", icon: <BiSolidReport/> },
+    { id: 7, path: "/dashboard/profile", name: "Profile", icon: <FaUser /> },
   ];
   return (
     <div className="w-16 md:w-56 fixed left-0 top-0 z-10 h-screen boder-r pt-8 px-4 bg-white">
@@ -65,7 +66,7 @@ const Sidebar = () => {
               className="flex justify-center md:justify-start items-center md:space-x-5"
               onClick={() => handleLinkClick(index)}
             >
-              <span>{link.icon()}</span>
+              <span>{link.icon}</span>
               <span className="text-sm text-gray-500 hidden md:flex">
                 {link.name}
               </span>
@@ -83,7 +84,7 @@ const Sidebar = () => {
                 className="flex justify-center md:justify-start items-center md:space-x-5"
                 onClick={() => handleLinkClick(index)}
               >
-                <span>{link.icon()}</span>
+                <span>{link.icon}</span>
                 <span className="text-sm text-gray-500 hidden md:flex">
                   {link.name}
                 </span>

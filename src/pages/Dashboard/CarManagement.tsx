@@ -6,6 +6,7 @@ import UpdateCar from "./UpdateCar";
 import { MdDeleteForever } from "react-icons/md";
 import { BiDetail } from "react-icons/bi";
 import Swal from "sweetalert2";
+import { SerializedError } from "@reduxjs/toolkit";
 
 const CarManagement = () => {
   const { data: carData, error, isLoading } = useGetAllCarsQuery(undefined);
@@ -33,7 +34,7 @@ const CarManagement = () => {
   };
 
   if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error loading cars: {error.message}</p>;
+  if (error) return <p>Error loading cars: {(error as SerializedError).message}</p>;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCar, setSelectedCar] = useState(null);
 

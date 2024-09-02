@@ -1,6 +1,5 @@
 import { BaseQueryApi, BaseQueryFn, createApi, DefinitionType, FetchArgs, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store";
-import { logout, setUser } from "../features/auth/authSlice";
 import Swal from "sweetalert2";
 
 const baseQuery = fetchBaseQuery({
@@ -33,7 +32,7 @@ const baseQueryWithRefreshToken: BaseQueryFn<FetchArgs, BaseQueryApi, Definition
       Swal.fire({
         position: "top-end",
         icon: "success",
-        title: `${result.error.data.message}`,
+        title: `${result?.error?.data?.message}`,
         showConfirmButton: false,
         timer: 1500
       });

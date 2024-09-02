@@ -20,10 +20,12 @@ const SpecificUserBooking = () => {
         return <h1>Data is loading...</h1>
     }
 
+    const bookings = userbooking?.data?.data || [];
 
 
 
-    const handleConfirmBooking = async (bookingId,carId,carStatus,carDeleted) => {
+
+    const handleConfirmBooking = async (bookingId:string,carId:string,carStatus:string,carDeleted:boolean) => {
         
         console.log({bookingId, carId, carStatus, carDeleted})
         if(carStatus === "UnAvailable"){
@@ -124,7 +126,7 @@ const SpecificUserBooking = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {userbooking?.data?.data.map((ele: any, idx: any) => (
+                {bookings.map((ele: any, idx: any) => (
                     <tr key={idx}>
                     <th>
                     <label>

@@ -20,6 +20,8 @@ import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy.js";
 import Contact from "../pages/Contact/Contact.js";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory.js";
 import PrivateRoute from "../components/layouts/PrivateRoute.js";
+import ReturnCarManagement from "../pages/Dashboard/ReturnCarManagement.js";
+import ManageBookingCar from "../pages/Dashboard/ManageBookingCar.js";
 
 
 export const router = createBrowserRouter([
@@ -90,7 +92,16 @@ export const router = createBrowserRouter([
           path: "manage-cars",
           element: <PrivateRoute role="admin"><CarManagement/></PrivateRoute>
         },
-    
+        {
+          path: "manage-booking",
+          element: <ManageBookingCar />
+        },
+        {
+          path: "return-cars",
+          element: <PrivateRoute role="admin"><ReturnCarManagement/></PrivateRoute>
+        },
+
+        // access user routes
         {
           path: "booking",
           element: <PrivateRoute role="user"> <SpecificUserBooking /></PrivateRoute>
