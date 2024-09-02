@@ -42,11 +42,21 @@ const CarDetails = () => {
 
   const handleBookNow = async () => {
     console.log("book now button clicked")
+    console.log("status -> ",singleCarItem.status)
     if(!user){
         navigate("/login")
     }
+    else if(singleCarItem?.status === "UnAvailable"){
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "This car is not available in this moment.",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
     else{
-      const data = {carId: singleCarItem._id,date,startTime: currentTime };
+      const data = {carId: singleCarItem._id, isBooked: "Pending"};
       console.log({data})
       try {
         const res = await bookingCar(data).unwrap();
@@ -54,7 +64,7 @@ const CarDetails = () => {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "Successfully booking this car",
+          title: "Successfully booking this car in your booking list.if you want to booking confirm then move on your booking list. clicked confirm button",
           showConfirmButton: false,
           timer: 1500
         });

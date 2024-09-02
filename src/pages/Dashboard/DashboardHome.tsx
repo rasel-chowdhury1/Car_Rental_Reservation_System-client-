@@ -8,7 +8,7 @@ const DashboardHome = () => {
     const user = undefined;
     return (
         <div className='m-8'>
-            <h3 className='uppercase text-xl my-4'>Hi,Welcome Back!</h3>
+            <h3 className=' text-2xl my-4 font-bold'>Welcome to QuickCar</h3>
            <div className='flex space-x-4 my-6' >
              <div className="basis-1/3 hover:basis-1/2 grid grid-cols-1 content-center   x-auto bg-[#BB34F5] h-[100px]">
                 <h3 className='flex text-white text-2xl pl-4 md:pl-16'><IoIosWallet className='mr-2' /> Cart</h3>

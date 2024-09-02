@@ -47,7 +47,15 @@ const CarsManagementApi = baseApi.injectEndpoints({
         method: 'POST',
         body: data,
       }),
-      invalidatesTags: ['booking'],
+      invalidatesTags: ['booking', "cars"],
+    }),
+    confirmBookingCar: builder.mutation({
+      query: (data) => ({
+        url: '/bookings/confirm',
+        method: 'PATCH',
+        body: data,
+      }),
+      invalidatesTags: ['booking', "cars"],
     }),
     returnbookingCar: builder.mutation({
       query: (data) => ({
@@ -56,8 +64,36 @@ const CarsManagementApi = baseApi.injectEndpoints({
         body: data,
       }),
       invalidatesTags: ['booking'],
-    })
+    }),
+    deleteBookingCar: builder.mutation({
+      query: (id) => ({
+        url: `/bookings/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['booking'],
+    }),
+    paymentHistoryByUser: builder.query({
+      query: (userId) => {
+        return {
+          url: `/payment/history/${userId}`,
+          method: 'GET',
+        };
+      },
+      transformResponse: (response) => {
+        return {
+          data: response.data,
+        };
+      },
+    }),
   }),
 });
 
-export const {useMyBookingQuery, useSingleBookingQuery, useBookingCarMutation, useReturnbookingCarMutation} = CarsManagementApi;
+export const {
+  useMyBookingQuery, 
+  useSingleBookingQuery, 
+  useBookingCarMutation, 
+  useReturnbookingCarMutation, 
+  useDeleteBookingCarMutation,
+  useConfirmBookingCarMutation,
+  usePaymentHistoryByUserQuery
+} = CarsManagementApi;

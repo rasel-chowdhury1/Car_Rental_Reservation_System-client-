@@ -18,6 +18,7 @@ import CheckOutPage from "../pages/CheckoutPage.js";
 import TermsCondition from "../pages/TermsCondition/TermsCondition.js"
 import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy.js";
 import Contact from "../pages/Contact/Contact.js";
+import PaymentHistory from "../pages/Dashboard/PaymentHistory.js";
 export const router = createBrowserRouter([
     {
       path: "/",
@@ -94,6 +95,10 @@ export const router = createBrowserRouter([
         {
           path: "return/:id",
           element: <CheckOutPage />
+        },
+        {
+          path: "payment-history",
+          element: <PaymentHistory/>
         }
       ]
     },

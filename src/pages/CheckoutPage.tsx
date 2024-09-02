@@ -4,15 +4,14 @@ import { useParams } from "react-router-dom";
 import getCurrentDateTime from "../utils/getCurrentDateTime";
 import { useAppSelector } from "../redux/hook";
 import { useCurrentUser } from "../redux/features/auth/authSlice";
-import axios from "axios";
-import Swal from "sweetalert2";
+
 // import { useAppSelector } from "../redux/hooks";
 // import { useCreteOrderMutation } from "../redux/api/api";
 
 export default function CheckOutPage() {
     const {id} = useParams()
     console.log({id})
-    const { data: singleBookingData, error, isLoading } = useSingleBookingQuery(id);
+    const { data: singleBookingData, isLoading } = useSingleBookingQuery(id);
     const user = useAppSelector(useCurrentUser);
     const [returnBookingCar] = useReturnbookingCarMutation()
     if(isLoading){
@@ -38,11 +37,11 @@ export default function CheckOutPage() {
   // Calculate the total cost
   const totalCost = timeDifferenceInHours * perHour;
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     console.log(e.target.name.value)
   
-    const data = {bookingId, endTime: endDate, totalCost,user };
+    const data = {bookingId, endTime: endTime, totalCost,user };
       console.log({data})
       try {
         const res = await returnBookingCar(data).unwrap();

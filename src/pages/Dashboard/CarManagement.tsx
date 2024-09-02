@@ -11,7 +11,7 @@ const CarManagement = () => {
   const { data: carData, error, isLoading } = useGetAllCarsQuery(undefined);
   const [deleteCar] = useDeleteCarMutation();
 
-  const handleDeleteCar = async (id) => {
+  const handleDeleteCar = async (id: string) => {
     const result = await Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -37,7 +37,7 @@ const CarManagement = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCar, setSelectedCar] = useState(null);
 
-  const handleOpenModal = (car) => {
+  const handleOpenModal = (car: any) => {
     setSelectedCar(car);
     setIsModalOpen(true);
   };
@@ -51,28 +51,28 @@ const CarManagement = () => {
     <div className="overflow-x-auto shadow-xl rounded w-full m-4">
       <table className="table ">
         {/* head */}
-        <thead className="text-2xl">
+        <thead className="text-xl">
           <tr>
             <th>
               <label>
                 <input type="checkbox" className="checkbox" />
               </label>
             </th>
-            <th>Product</th>
-            <th>IsStatus</th>
-            <th>Price</th>
+            <th>Car Details</th>
+            <th>currently</th>
+            <th>Price Per Hour</th>
             <th>
               <button className="btn-ghost">Action</button>
             </th>
             <Link to="/dashboard/create-car" className="btn">
-              Add New Product
+              Add New Car
             </Link>
           </tr>
         </thead>
         <tbody className="mb-4">
           {/* row 1 */}
           {carData &&
-            carData?.data.map((item) => (
+            carData?.data.map((item: any) => (
               <tr key={item._id}>
                 <th>
                   <label>
@@ -93,7 +93,7 @@ const CarManagement = () => {
                   </div>
                 </td>
                 <td className="font-bold">{item.status}</td>
-                <td>{item?.pricePerHour}</td>
+                <td className="text-center font-semibold">{item?.pricePerHour}</td>
                 <th>
                   <div className="flex items-center ">
                   <button  className="p-2 m-2">

@@ -88,11 +88,12 @@ const Login = () => {
           <hr />
           <form onSubmit={handleSubmit} className="w-full md:w-1/2">
             <div className="flex flex-col mt-5 ">
+            <label className="ml-3 font-medium" >Email :</label>
               <input
                 type="text"
-                placeholder="Email"
+                placeholder="Enter your email"
                 name="email"
-                className=" outline-none border-2 w-full  mt-4 px-8 py-4 bg-[#EEF5F3]  rounded-full"
+                className=" outline-none border-2 w-full  mt-2 px-8 py-4 bg-[#EEF5F3]  rounded-full"
                 value={logindata.email}
                 onChange={handleChange}
               />
@@ -100,18 +101,20 @@ const Login = () => {
               <br />
 
 <div className="relative mt-1">
+<label className="ml-3 font-medium " >Password:</label>
               <input
                 type={passwordVisible ? 'text' : 'password'}
                 id="password"
                 name="password"
+                placeholder="Enter your password"
                 value={logindata.password}
                 onChange={handleChange}
-                className="outline-none border-2 w-full  mt-4 px-8 py-4 bg-[#EEF5F3]  rounded-full"
+                className="outline-none border-2 w-full  mt-2 px-8 py-4 bg-[#EEF5F3]  rounded-full"
               />
               <button
                 type="button"
                 onClick={togglePasswordVisibility}
-                className="absolute inset-y-0 right-0 flex items-center pt-3 pr-3"
+                className="absolute inset-y-0 right-0 flex items-center mt-8 pr-3"
               >
                 {passwordVisible ? (
                   <FaEyeSlash className="h-5 w-5 text-gray-500" />
@@ -135,9 +138,7 @@ const Login = () => {
               </button>
             </div>
           </form>
-          <p className="text-start">
-            <NavLink to="/forget">Forget Password</NavLink>
-          </p>
+          
         </div>
         <div
 
@@ -156,6 +157,16 @@ const Login = () => {
           </Link>
         </div>
       </div>
+
+      <footer className="mt-6 text-center">
+        <Link to="/privacypolicy" className="text-sm text-gray-500 hover:underline">
+          Privacy Policy
+        </Link>{" "}
+        |{" "}
+        <Link to="/terms&condition" className="text-sm text-gray-500 hover:underline">
+          Terms of Service
+        </Link>
+      </footer>
     </div>
 
   );

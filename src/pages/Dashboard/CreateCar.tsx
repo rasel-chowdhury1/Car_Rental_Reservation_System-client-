@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 const img_hosting_token = "622e0d92c5c1dfc5ba8cf9cab3a6e860";
 type ICarFormInput = {
     name: string;
+    model: string;
     photo?: string;
     description: string;
     color: string;
@@ -40,6 +41,7 @@ const CreateCar = () => {
           showConfirmButton: false,
           timer: 1500
         });
+        
         reset()
       } catch (error) {
         console.log({error})
@@ -82,6 +84,16 @@ const CreateCar = () => {
           {...register('name', { required: 'Car name is required' })}
         />
         {errors.name && <p className="text-red-400">{errors.name.message}</p>}
+      </div>
+      <div>
+        <label htmlFor="Model" className="label-text font-semibold">Car Model*</label>
+        <input
+          id="model"
+          type="text"
+          className="input input-bordered w-full "
+          {...register('model', { required: 'Car name is required' })}
+        />
+        {errors.model && <p className="text-red-400">{errors.model.message}</p>}
       </div>
 
       <div>
