@@ -14,6 +14,7 @@ const PrivateRoute = ( { children, role }: TPrivateRoute) => {
 
     const dispatch = useAppDispatch();
 
+
     if(role !== undefined && role !== user?.role){
         dispatch(logout())
         return <Navigate to="/login" replace={true}/>

@@ -19,6 +19,9 @@ import TermsCondition from "../pages/TermsCondition/TermsCondition.js"
 import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy.js";
 import Contact from "../pages/Contact/Contact.js";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory.js";
+import PrivateRoute from "../components/layouts/PrivateRoute.js";
+
+
 export const router = createBrowserRouter([
     {
       path: "/",
@@ -69,7 +72,7 @@ export const router = createBrowserRouter([
     },
     {
       path: "/dashboard",
-      element:<Dashboard />,
+      element: <PrivateRoute role={undefined}><Dashboard /></PrivateRoute>,
       children:[
         {
           path: "",
@@ -77,28 +80,28 @@ export const router = createBrowserRouter([
         },
         {
           path: "user-management",
-          element: <UserManagement />
+          element: <PrivateRoute role="admin"> <UserManagement /> </PrivateRoute>
         },
         {
           path: "create-car",
-          element: <CreateCar />
+          element: <PrivateRoute role="admin"><CreateCar /></PrivateRoute>
         },
         {
           path: "manage-cars",
-          element: <CarManagement/>
+          element: <PrivateRoute role="admin"><CarManagement/></PrivateRoute>
         },
     
         {
           path: "booking",
-          element: <SpecificUserBooking />
+          element: <PrivateRoute role="user"> <SpecificUserBooking /></PrivateRoute>
         },
         {
           path: "return/:id",
-          element: <CheckOutPage />
+          element:  <PrivateRoute role="user"> <CheckOutPage /></PrivateRoute>
         },
         {
           path: "payment-history",
-          element: <PaymentHistory/>
+          element: <PrivateRoute role="user"> <PaymentHistory/> </PrivateRoute>
         }
       ]
     },
