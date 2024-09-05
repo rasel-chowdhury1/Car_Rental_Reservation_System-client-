@@ -2,7 +2,7 @@
 import {  useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { TiArrowBackOutline } from "react-icons/ti";
-import { Link, NavLink, useNavigate} from "react-router-dom";
+import { Link,useNavigate} from "react-router-dom";
 import { useLoginMutation } from "../redux/features/auth/authApi";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/features/auth/authSlice";
@@ -12,7 +12,7 @@ import Swal from "sweetalert2";
 
 const Login = () => {
   const navigate = useNavigate()
-  const [login, {data,isLoading}] = useLoginMutation();
+  const [login, {isLoading}] = useLoginMutation();
   console.log({isLoading})
   const dispatch = useDispatch();
 
@@ -22,16 +22,15 @@ const Login = () => {
   });
 
   
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false)
-
-  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [error, setError] = useState<string>("");
+  console.log({error})
+  const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLogindata({
       ...logindata,
       [e.target.name]: e.target.value,
@@ -66,7 +65,7 @@ const Login = () => {
 
   return (
     <div className="py-10 px-10 text-[#0c01a1] dark:text-[#73e9fe]">
-      {loading && (
+      {isLoading && (
         <div className="flex justify-center items-center">
           <span className="loading loading-ring loading-md"></span>Loging
           Processing....

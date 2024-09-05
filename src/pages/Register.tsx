@@ -6,7 +6,7 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import { useSignUpMutation } from "../redux/features/auth/authApi";
 
-const Register = () => {
+const Register: React.FC = () => {
     const navigate = useNavigate();
     const [signUp] = useSignUpMutation()
     const [error, setError] = useState("")
@@ -20,7 +20,7 @@ const Register = () => {
         address: ""
     });
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         setFormdata({
           ...formdata,
           [e.target.name]: e.target.value,
@@ -29,7 +29,7 @@ const Register = () => {
     
       const { email, name, password, password2, role, phone, address } = formdata;
   
-      const handleSubmit = async (e) => {
+      const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError("")
         console.log("before check ", formdata)
@@ -46,7 +46,7 @@ const Register = () => {
         
     
         try {
-          const res = await signUp(formdata).unwrap() // when not use unwrap.return {data:{data: {}}} but use this then return only {data: {}}
+           await signUp(formdata).unwrap() // when not use unwrap.return {data:{data: {}}} but use this then return only {data: {}}
           
           Swal.fire({
             position: "top-end",

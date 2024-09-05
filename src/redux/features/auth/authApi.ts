@@ -1,6 +1,10 @@
+import { TResponseRedux } from "../../../types/global.type";
+import { TUser } from "../../../types/user.type";
 import { baseApi } from "../../api/baseApi";
-
-
+type QueryParam = {
+  name: string;
+  value: string | number;
+};
 const authApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         login: builder.mutation({
@@ -19,8 +23,8 @@ const authApi = baseApi.injectEndpoints({
             invalidatesTags: ['users'],
         }),
         getAllUsers: builder.query({
-            query: (args) => {
-              console.log(args);
+            query: (args?: QueryParam[]) => {
+              // console.log(args);
               const params = new URLSearchParams();
        
               if (args) {
@@ -35,7 +39,7 @@ const authApi = baseApi.injectEndpoints({
               };
             },
             providesTags: ['users'],
-            transformResponse: (response) => {
+            transformResponse: (response: TResponseRedux<TUser[]>) => {
               return {
                 data: response.data,
               };

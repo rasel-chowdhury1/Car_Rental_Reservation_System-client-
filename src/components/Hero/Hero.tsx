@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import{ useEffect } from "react";
 import carPng from "../../assets/car.png";
 import yellowCar from "../../assets/banner-car.png";
 import AOS from "aos";
+interface HeroProps {
+  theme: "light" | "dark"; // Assuming theme can only be "light" or "dark"
+}
 
-const Hero = ({ theme }) => {
+const Hero: React.FC<HeroProps> = ({ theme }) => {
   useEffect(() => {
     AOS.refresh();
   });

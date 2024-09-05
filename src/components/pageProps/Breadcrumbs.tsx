@@ -1,8 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { HiOutlineChevronRight } from "react-icons/hi";
 import { useLocation } from "react-router-dom";
 
-const Breadcrumbs = ({ prevLocation, title }) => {
+interface BreadcrumbsProps {
+  prevLocation: string;
+  title: string;
+}
+
+
+const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ prevLocation, title }) => {
   console.log({prevLocation})
   const location = useLocation();
   const [locationPath, setLocationPath] = useState("");

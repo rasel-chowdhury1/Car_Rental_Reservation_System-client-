@@ -1,10 +1,15 @@
+import { TResponseRedux } from "../../../types/global.type";
+import { TPayment } from "../../../types/payment.type";
 import { baseApi } from "../../api/baseApi";
-
+ type QueryParam = {
+  name: string;
+  value: string | number;
+};
 const CarsManagementApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     myBooking: builder.query({
-      query: (args) => {
-        console.log(args);
+      query: (args?: QueryParam[]) => {
+        // console.log(args);
         const params = new URLSearchParams();
 
         if (args) {
@@ -19,10 +24,10 @@ const CarsManagementApi = baseApi.injectEndpoints({
         };
       },
       providesTags: ['booking'],
-      transformResponse: (response) => {
-        console.log({response})
+      transformResponse: (response: TResponseRedux<TPayment[]>) => {
+        // console.log({response})
         return {
-          data: response,
+          data: response.data,
         };
       },
     }),
@@ -34,9 +39,10 @@ const CarsManagementApi = baseApi.injectEndpoints({
             method: 'GET',
           };
         },
-        transformResponse: (response) => {
+        transformResponse: (response: TResponseRedux<TPayment>) => {
+          // console.log("single booking -> ", response)
           return {
-            data: response,
+            data: response.data,
           };
         },
       }),
@@ -79,7 +85,8 @@ const CarsManagementApi = baseApi.injectEndpoints({
           method: 'GET',
         };
       },
-      transformResponse: (response) => {
+      transformResponse: (response: TResponseRedux<TPayment[]>) => {
+        // console.log("payment history response -> ", response)
         return {
           data: response.data,
         };

@@ -1,9 +1,23 @@
+// import { TCar } from "../../../types/car.type";
+import { TCar } from "../../../types/car.type";
+import { TResponseRedux } from "../../../types/global.type";
 import { baseApi } from "../../api/baseApi";
+type QueryParam = {
+  name: string;
+  value: string | number;
+};
+
+// type GetAllCarsResponse = {
+//   success: boolean;
+//   statusCode: number;
+//   message: string;
+//   data: TCar[];
+// };
 
 const CarsManagementApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllCars: builder.query({
-      query: (args) => {
+      query: (args?: QueryParam[]) => {
         console.log(args);
         const params = new URLSearchParams();
  
@@ -19,7 +33,8 @@ const CarsManagementApi = baseApi.injectEndpoints({
         };
       },
       providesTags: ['cars'],
-      transformResponse: (response) => {
+      transformResponse: (response: TResponseRedux<TCar[]>) => {
+        console.log("get all cars response -> ", response)
         return {
           data: response.data,
         };

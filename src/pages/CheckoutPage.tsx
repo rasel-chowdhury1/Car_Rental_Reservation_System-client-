@@ -1,18 +1,19 @@
-import React, { useState } from "react";
+
 import { useReturnbookingCarMutation, useSingleBookingQuery } from "../redux/features/booking/CarBookingManagementApi";
 import { useParams } from "react-router-dom";
 import getCurrentDateTime from "../utils/getCurrentDateTime";
 import { useAppSelector } from "../redux/hook";
 import { useCurrentUser } from "../redux/features/auth/authSlice";
+import { TUser } from "../types/user.type";
 
 // import { useAppSelector } from "../redux/hooks";
 // import { useCreteOrderMutation } from "../redux/api/api";
 
 export default function CheckOutPage() {
     const {id} = useParams()
-    console.log({id})
+    // console.log({id})
     const { data: singleBookingData, isLoading } = useSingleBookingQuery(id);
-    const user = useAppSelector(useCurrentUser);
+    const user = useAppSelector(useCurrentUser) as TUser || null;
     const [returnBookingCar] = useReturnbookingCarMutation()
     if(isLoading){
         return <p>data is loading...</p>
@@ -20,8 +21,8 @@ export default function CheckOutPage() {
 
     
     const {date: endDate, currentTime: endTime} = getCurrentDateTime();
-    const {startTime, date: issueDate, car,_id: bookingId} = singleBookingData?.data?.data || {};
-    const {pricePerHour: perHour} = car;
+    const {startTime, date: issueDate, car,_id: bookingId} = singleBookingData?.data || {};
+    const perHour = car?.pricePerHour || 0;
     
 
 
@@ -39,16 +40,16 @@ export default function CheckOutPage() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log(e.target.name.value)
+    // console.log(e.target.name.value)
   
     const data = {bookingId, endTime: endTime, totalCost,user };
-      console.log({data})
+      // console.log({data})
       try {
         const res = await returnBookingCar(data).unwrap();
-        console.log({res})
+        // console.log({res})
         window.location.href = res.data.payment_url;
       } catch (error) {
-        console.log({error})
+        // console.log({error})
       }
   };
 
@@ -58,7 +59,8 @@ export default function CheckOutPage() {
       <form onSubmit={handleSubmit}>
         <div className="mb-8 border p-5 rounded">
           <h3 className="text-xl font-semibold mb-4">User Information</h3>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          {user && (
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 text-left">
                 Name
@@ -108,6 +110,7 @@ export default function CheckOutPage() {
               />
             </div>
           </div>
+          )}
         </div>
 
         <div className="mb-8">

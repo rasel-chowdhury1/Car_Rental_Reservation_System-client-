@@ -1,6 +1,12 @@
-import React from "react";
+interface SingleCardProps {
+  item: {
+    title: string;
+    totalNumber: number;
+    icon: string;  // Assuming `icon` is a string representing the class name
+  };
+}
 
-const SingleCard = (props) => {
+const SingleCard: React.FC<SingleCardProps> = (props) => {
   const { title, totalNumber, icon } = props.item;
   return (
     <div className="bg-gradient-orange-red p-5 flex items-center justify-between rounded-md cursor-pointer">
@@ -10,7 +16,7 @@ const SingleCard = (props) => {
       </div>
 
       <span className="text-2xl font-normal text-white/90">
-        <i class={icon}></i>
+        <i className={icon}></i>
       </span>
     </div>
   );

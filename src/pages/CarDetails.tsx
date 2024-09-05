@@ -1,27 +1,42 @@
 
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
-import BookingForm from "../components/BookingForm.js";
-import PaymentMethod from "../components/PaymentMethod.js";
 import { useGetAllCarsQuery } from "../redux/features/Cars/CarsManagementApi.js";
 import { useAppSelector } from "../redux/hook.js";
 import { useCurrentUser } from "../redux/features/auth/authSlice.js";
 import getCurrentDateTime from "../utils/getCurrentDateTime.js";
 import { useBookingCarMutation } from "../redux/features/booking/CarBookingManagementApi.js";
 import Swal from "sweetalert2";
+import { TUser } from "../types/user.type.js";
+
+interface Car {
+  _id: string;
+  name: string;
+  photo: string;
+  pricePerHour: number;
+  rating?: number;
+  description: string;
+  model: string;
+  automatic?: boolean;
+  speed?: string;
+  gps?: boolean;
+  seatType?: string;
+  brand?: string;
+  status: string;
+}
 
 const CarDetails = () => {
-  const {data: CarsData, error, isLoading} = useGetAllCarsQuery(undefined);
+  const {data: CarsData,isLoading} = useGetAllCarsQuery(undefined);
   const [bookingCar] = useBookingCarMutation();
-  const user = useAppSelector(useCurrentUser);
+  const user = useAppSelector(useCurrentUser) as TUser || null;
   const navigate = useNavigate();
-  console.log({user})
-  console.log({CarsData})
+  // console.log({user})
+  // console.log({CarsData})
   const { slug } = useParams();
-  console.log({slug})
-  let singleCarItem;
+  // console.log({slug})
+  let singleCarItem: Car | undefined;
   if (CarsData) {
-    singleCarItem = CarsData.data.find((item) => item._id === slug);
+    singleCarItem = CarsData?.data?.find((item: Car) => item._id === slug);
   }
 
   // Handle the case where the car is not found
@@ -41,8 +56,8 @@ const CarDetails = () => {
 
 
   const handleBookNow = async () => {
-    console.log("book now button clicked")
-    console.log("status -> ",singleCarItem.status)
+    // console.log("book now button clicked")
+    // console.log("status -> ",singleCarItem.status)
     if(!user){
         navigate("/login")
     }
@@ -57,10 +72,10 @@ const CarDetails = () => {
     }
     else{
       const data = {carId: singleCarItem._id, isBooked: "Pending"};
-      console.log({data})
+      // console.log({data})
       try {
         const res = await bookingCar(data).unwrap();
-        console.log({res})
+        // console.log({res})
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -69,7 +84,7 @@ const CarDetails = () => {
           timer: 1500
         });
       } catch (error) {
-        console.log({error})
+        // console.log({error})
       }
 
       

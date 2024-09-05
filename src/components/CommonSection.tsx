@@ -1,5 +1,5 @@
 
-const CommonSection = ({title}) => {
+const CommonSection = ({title}: {title:string}) => {
     return (
         <section className="bg-custom-gradient bg-center bg-cover bg-no-repeat py-20">
             <div className="text-center">

@@ -1,7 +1,9 @@
 
 import { Form, FormGroup } from "reactstrap";
+
+
 const BookingForm = () => {
-  const submitHandler = (event) => {
+  const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
 

@@ -1,7 +1,7 @@
 
 import aboutImg from "../../assets/all-images/cars-img/bmw-offer.png";
 
-const AboutSection = ({ aboutClass }) => {
+const AboutSection = ({ aboutClass }:{aboutClass: string}) => {
   return (
     <section
       className={`py-16 ${aboutClass === "aboutPage" ? "mt-0" : "mt-28"}`}

@@ -2,7 +2,16 @@
 import { Col } from "reactstrap";
 import { Link } from "react-router-dom";
 
-const CarItem = (props) => {
+interface CarItemProps {
+  item: {
+    _id: string;
+    name: string;
+    pricePerHour: number;
+    photo: string;
+  };
+}
+
+const CarItem: React.FC<CarItemProps>  = (props) => {
   const { _id, name, pricePerHour, photo } = props.item;
 
   return (

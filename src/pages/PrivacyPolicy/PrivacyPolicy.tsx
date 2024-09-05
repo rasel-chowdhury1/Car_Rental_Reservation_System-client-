@@ -1,6 +1,5 @@
-import React from "react";
+
 import { Link } from "react-router-dom";
-import { RiArrowRightUpFill } from "react-icons/ri";
 const PrivacyPolicy = () => {
   return (
     <div>

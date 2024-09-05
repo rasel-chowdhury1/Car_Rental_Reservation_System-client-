@@ -73,7 +73,7 @@ const CarManagement = () => {
         <tbody className="mb-4">
           {/* row 1 */}
           {carData &&
-            carData?.data.map((item: any) => (
+            (carData?.data || []).map((item: any) => (
               <tr key={item._id}>
                 <th>
                   <label>

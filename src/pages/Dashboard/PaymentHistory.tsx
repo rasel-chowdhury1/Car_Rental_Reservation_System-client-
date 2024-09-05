@@ -1,10 +1,13 @@
 import { useCurrentUser } from "../../redux/features/auth/authSlice";
 import { usePaymentHistoryByUserQuery } from "../../redux/features/booking/CarBookingManagementApi";
 import { useAppSelector } from "../../redux/hook";
+import { TUser } from "../../types/user.type";
 
 const PaymentHistory = () => {
-  const user = useAppSelector(useCurrentUser);
-  const { data: paymentData, error, isLoading } = usePaymentHistoryByUserQuery(user._id);
+  const user = useAppSelector(useCurrentUser) as TUser || null;
+  const { data: paymentData, error, isLoading } = usePaymentHistoryByUserQuery(user._id || "")  ;
+
+  console.log({paymentData})
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: </div>;
@@ -32,7 +35,7 @@ const PaymentHistory = () => {
             </thead>
             <tbody>
             {/* row 1 */}
-            {paymentData?.data.map((ele: any) => (
+            {(paymentData?.data || []).map((ele: any) => (
                 <tr>
                 <th>
                 <label>

@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { useUpdateCarMutation } from "../../redux/features/Cars/CarsManagementApi";
 
 type ICarFormInput = {
+  _id?: string;
   name: string;
   description: string;
   color: string;
@@ -13,11 +14,15 @@ type ICarFormInput = {
   pricePerHour: number;
 };
 
-const UpdateCar = ({ previewsData,onClose }) => {
+interface UpdateCarProps {
+  previewsData: ICarFormInput;
+  onClose: () => void;
+}
+
+const UpdateCar = ({ previewsData,onClose }: UpdateCarProps) => {
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
     reset,
   } = useForm<ICarFormInput>({
@@ -36,9 +41,9 @@ const UpdateCar = ({ previewsData,onClose }) => {
   const onSubmit: SubmitHandler<ICarFormInput> = async (data) => {
     try {
       data.pricePerHour = Number(data.pricePerHour); // Ensure price is a number
-      console.log(data)
+      // console.log(data)
       const res = await updateCar({ id: previewsData._id, data }).unwrap();
-      console.log({res})
+      // console.log({res})
       Swal.fire({
         position: "top-end",
         icon: "success",

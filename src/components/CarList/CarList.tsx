@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { RiSortAsc } from "react-icons/ri";
 import { useGetAllCarsQuery } from "../../redux/features/Cars/CarsManagementApi";
 import CarItem from "../CarItem/CarItem";
+import { TCar } from "../../types/car.type";
+
+
 
 const CarList = () => {
   const { data: CarsData, error, isLoading } = useGetAllCarsQuery(undefined);
@@ -11,34 +14,34 @@ const CarList = () => {
   const [priceRange, setPriceRange] = useState([0, 100000]); // For filtering by price range
   const [searchQuery, setSearchQuery] = useState(''); // For search functionality
 
-  const handleSortChange = (event) => {
+  const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSortOrder(event.target.value);
   };
 
-  const handleCarTypeChange = (event) => {
+  const handleCarTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setCarType(event.target.value);
   };
 
-  const handlePriceRangeChange = (event) => {
+  const handlePriceRangeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const [minPrice, maxPrice] = event.target.value.split('-').map(Number);
     setPriceRange([minPrice, maxPrice]);
   };
 
-  const handleSearchChange = (event) => {
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value.toLowerCase());
   };
 
   // Apply filters
-  const filteredCars = CarsData?.data.filter(car => {
+  const filteredCars =  Array.isArray(CarsData?.data) ? CarsData?.data.filter((car: TCar) => {
     return (
       (carType ? car.type === carType : true) &&
       (car.pricePerHour >= priceRange[0] && car.pricePerHour <= priceRange[1]) &&
       (car.name.toLowerCase().includes(searchQuery) || car.description.toLowerCase().includes(searchQuery))
     );
-  });
+  }): [];
 
   // Apply sorting
-  const sortedCars = filteredCars?.sort((a, b) => {
+  const sortedCars = filteredCars?.sort((a: TCar, b: TCar) => {
     if (sortOrder === 'low') {
       return a.pricePerHour - b.pricePerHour;
     }
@@ -53,7 +56,10 @@ const CarList = () => {
   }
 
   if (error) {
-    return <h1>Error loading data: {error.message}</h1>;
+    const errorMessage = 
+      (error as { message?: string }).message ||
+      "An unknown error occurred";
+    return <h1>Error loading data: {errorMessage}</h1>;
   }
 
   return (
@@ -122,7 +128,7 @@ const CarList = () => {
         {/* Car listing */}
         <div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16">
-            {sortedCars?.map((car) => (
+            {sortedCars?.map((car: TCar) => (
               <CarItem item={car} key={car._id} />
             ))}
           </div>

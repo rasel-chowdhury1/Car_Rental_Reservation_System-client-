@@ -1,7 +1,10 @@
-import React from "react";
-import { BiCaretDown } from "react-icons/bi";
 
-const NavTitle = ({ title, icons }) => {
+import { BiCaretDown } from "react-icons/bi";
+interface NavTitleProps {
+  title: string;
+  icons?: boolean; // `icons` is optional and should be a boolean
+}
+const NavTitle: React.FC<NavTitleProps>  = ({ title, icons }) => {
   return (
     <div className="flex items-center justify-between pb-5">
       {icons ? (

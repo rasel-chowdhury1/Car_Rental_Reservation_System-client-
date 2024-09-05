@@ -1,4 +1,4 @@
-import React from "react";
+
 import NavTitle from "./NavTitle";
 
 const Price = () => {

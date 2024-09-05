@@ -7,27 +7,29 @@ import getCurrentDateTime from "../../utils/getCurrentDateTime";
 import { TbTruckReturn } from "react-icons/tb";
 import { useAppSelector } from "../../redux/hook";
 import { useCurrentUser } from "../../redux/features/auth/authSlice";
+import { TUser } from "../../types/user.type";
 
 const SpecificUserBooking = () => {
-    const user = useAppSelector(useCurrentUser);
-    console.log({user})
+    const user = useAppSelector(useCurrentUser) as TUser || null;
+    // console.log({user})
     const {data: userbooking,  isLoading} = useMyBookingQuery(undefined);
+    // console.log({userbooking})
     const [deleteBookingCar] = useDeleteBookingCarMutation();
     const [confirmBookingCar] = useConfirmBookingCarMutation();
 
-    console.log({userbooking})
+    // console.log({userbooking})
     if(isLoading){
         return <h1>Data is loading...</h1>
     }
 
-    const bookings = userbooking?.data?.data || [];
+    const bookings = userbooking?.data || [];
 
 
 
 
     const handleConfirmBooking = async (bookingId:string,carId:string,carStatus:string,carDeleted:boolean) => {
         
-        console.log({bookingId, carId, carStatus, carDeleted})
+        // console.log({bookingId, carId, carStatus, carDeleted})
         if(carStatus === "UnAvailable"){
             Swal.fire({
               position: "top-end",
@@ -52,7 +54,7 @@ const SpecificUserBooking = () => {
         try {
             const data = {bookingId,carId,date,startTime: currentTime, isBooked: "Confirmed"}
             const res = await confirmBookingCar(data).unwrap();
-            console.log({res})
+            // console.log({res})
             Swal.fire({
                 position: "top-end",
                 icon: "success",
@@ -61,7 +63,7 @@ const SpecificUserBooking = () => {
                 timer: 1500
               });
         } catch (error) {
-            console.log({error})
+            // console.log({error})
             Swal.fire({
                 position: "top-end",
                 icon: "success",
@@ -90,7 +92,7 @@ const SpecificUserBooking = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const res = await deleteBookingCar(bookingid);
+                     await deleteBookingCar(bookingid);
                     Swal.fire({
                         position: "top-end",
                         icon: "error",
@@ -99,7 +101,7 @@ const SpecificUserBooking = () => {
                         timer: 1500
                       });
                 } catch (error) {
-                    console.log({error})
+                    // console.log({error})
                 }
             }
         });

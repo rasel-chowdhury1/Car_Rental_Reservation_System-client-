@@ -28,12 +28,12 @@ const CreateCar = () => {
 
     
     const onSubmit: SubmitHandler<ICarFormInput> = async (data) => {
-      console.log(data);
+      // console.log(data);
 
       try {
         data.pricePerHour = Number(data.pricePerHour);
         const res = await createCar(data).unwrap();
-        console.log({res})
+        // console.log({res})
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -44,7 +44,7 @@ const CreateCar = () => {
         
         reset()
       } catch (error) {
-        console.log({error})
+        // console.log({error})
       }
     };
   

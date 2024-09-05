@@ -2,8 +2,14 @@ import { BaseQueryApi, BaseQueryFn, createApi, DefinitionType, FetchArgs, fetchB
 import { RootState } from "../store";
 import Swal from "sweetalert2";
 
+
+interface ApiError {
+  message: string;
+  // add other properties if needed
+}
+
 const baseQuery = fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api",
+    baseUrl: "https://car-rental-reservation-system-phi.vercel.app/api",
     credentials: "include",
     prepareHeaders: (headers, {getState}) => {
         const token = (getState() as RootState).auth.token;
@@ -20,19 +26,21 @@ const baseQueryWithRefreshToken: BaseQueryFn<FetchArgs, BaseQueryApi, Definition
     let result = await baseQuery(args, api, extraOptions);
     
     if(result?.error?.status === 404){
+      const errorData = result?.error.data as ApiError;
       Swal.fire({
         position: "top-end",
         icon: "error",
-        title: `${result.error.data.message}`,
+        title: `${errorData.message}`,
         showConfirmButton: false,
         timer: 1500
       });
     }
     if (result?.error?.status === 403) {
+      const errorData = result?.error.data as ApiError;
       Swal.fire({
         position: "top-end",
         icon: "success",
-        title: `${result?.error?.data?.message}`,
+        title: `${errorData.message}`,
         showConfirmButton: false,
         timer: 1500
       });

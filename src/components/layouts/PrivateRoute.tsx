@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/hook';
 import { logout, useCurrentUser } from '../../redux/features/auth/authSlice';
 import { Navigate } from 'react-router-dom';
+import { TUser } from '../../types/user.type';
 
 
 type TPrivateRoute = {
@@ -9,7 +10,7 @@ type TPrivateRoute = {
     role:  string | undefined
 }
 const PrivateRoute = ( { children, role }: TPrivateRoute) => {
-    const user = useAppSelector(useCurrentUser)
+    const user = useAppSelector(useCurrentUser) as TUser || null;
     
 
     const dispatch = useAppDispatch();

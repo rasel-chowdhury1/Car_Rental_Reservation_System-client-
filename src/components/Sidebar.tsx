@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // ICONS //
-import { LuBox, LuUser, LuMessageSquare, LuCalendar } from "react-icons/lu";
+import { LuBox, LuMessageSquare, } from "react-icons/lu";
 import { RiReservedLine } from "react-icons/ri";
 import { FaCar, FaUser } from "react-icons/fa";
 import { BiSolidReport } from "react-icons/bi";
@@ -10,10 +10,11 @@ import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../redux/hook";
 import { logout, useCurrentUser } from "../redux/features/auth/authSlice";
 import { IoIosLogOut } from "react-icons/io";
+import { TUser } from "../types/user.type";
 // ICONS //
 
 const Sidebar = () => {
-  const user  = useAppSelector(useCurrentUser);
+  const user  = useAppSelector(useCurrentUser) as TUser || null;
   const [activeLink, setActiveLink] = useState(0);
   const dispatch = useAppDispatch();
 

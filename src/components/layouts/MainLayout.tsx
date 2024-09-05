@@ -3,7 +3,7 @@ import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 
 
-const MainLayout = ({theme, setTheme}: {theme: String, setTheme:Function}) => {
+const MainLayout = ({theme, setTheme}: {theme: string, setTheme:Function}) => {
     return (
         <div>
             <Navbar theme={theme} setTheme={setTheme} />

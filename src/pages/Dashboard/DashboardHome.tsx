@@ -5,9 +5,10 @@ import { TiShoppingCart } from "react-icons/ti";
 import { FaPhone } from "react-icons/fa6";
 import { useAppSelector } from "../../redux/hook";
 import { useCurrentUser } from "../../redux/features/auth/authSlice";
+import { TUser } from "../../types/user.type";
 
 const DashboardHome = () => {
-    const user = useAppSelector(useCurrentUser);
+    const user = useAppSelector(useCurrentUser) as TUser || null;
     return (
         <div className='m-8'>
             <h3 className=' text-2xl my-4 font-bold'>Welcome to QuickCar</h3>
