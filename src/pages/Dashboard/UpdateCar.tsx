@@ -42,7 +42,7 @@ const UpdateCar = ({ previewsData,onClose }: UpdateCarProps) => {
     try {
       data.pricePerHour = Number(data.pricePerHour); // Ensure price is a number
       // console.log(data)
-      const res = await updateCar({ id: previewsData._id, data }).unwrap();
+       await updateCar({ id: previewsData._id, data }).unwrap();
       // console.log({res})
       Swal.fire({
         position: "top-end",

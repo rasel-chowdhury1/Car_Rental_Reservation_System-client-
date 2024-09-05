@@ -74,7 +74,7 @@ const CarDetails = () => {
       const data = {carId: singleCarItem._id, isBooked: "Pending"};
       // console.log({data})
       try {
-        const res = await bookingCar(data).unwrap();
+         await bookingCar(data).unwrap();
         // console.log({res})
         Swal.fire({
           position: "top-end",

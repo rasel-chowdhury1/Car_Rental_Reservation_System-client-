@@ -5,12 +5,12 @@ import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
 import getCurrentDateTime from "../../utils/getCurrentDateTime";
 import { TbTruckReturn } from "react-icons/tb";
-import { useAppSelector } from "../../redux/hook";
-import { useCurrentUser } from "../../redux/features/auth/authSlice";
-import { TUser } from "../../types/user.type";
+// import { useAppSelector } from "../../redux/hook";
+// import { useCurrentUser } from "../../redux/features/auth/authSlice";
+// import { TUser } from "../../types/user.type";
 
 const SpecificUserBooking = () => {
-    const user = useAppSelector(useCurrentUser) as TUser || null;
+    // const user = useAppSelector(useCurrentUser) as TUser || null;
     // console.log({user})
     const {data: userbooking,  isLoading} = useMyBookingQuery(undefined);
     // console.log({userbooking})
@@ -53,7 +53,7 @@ const SpecificUserBooking = () => {
         
         try {
             const data = {bookingId,carId,date,startTime: currentTime, isBooked: "Confirmed"}
-            const res = await confirmBookingCar(data).unwrap();
+             await confirmBookingCar(data).unwrap();
             // console.log({res})
             Swal.fire({
                 position: "top-end",

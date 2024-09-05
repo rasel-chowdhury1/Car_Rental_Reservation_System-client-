@@ -32,7 +32,7 @@ const CreateCar = () => {
 
       try {
         data.pricePerHour = Number(data.pricePerHour);
-        const res = await createCar(data).unwrap();
+         await createCar(data).unwrap();
         // console.log({res})
         Swal.fire({
           position: "top-end",
