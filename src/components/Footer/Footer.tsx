@@ -6,24 +6,26 @@ import {
   FaLocationArrow,
   FaMobileAlt,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const FooterLinks = [
   {
     title: "Home",
-    link: "/#",
+    link: "/",
+  },
+  {
+    title: "Bookings",
+    link: "/dashboard/bookings",
   },
   {
     title: "About",
-    link: "/#about",
+    link: "/about",
   },
   {
     title: "Contact",
-    link: "/#contact",
+    link: "/contact",
   },
-  {
-    title: "Blog",
-    link: "/#blog",
-  },
+  
 ];
 const Footer = () => {
   return (
@@ -36,8 +38,7 @@ const Footer = () => {
               Car Rental
             </h1>
             <p className="text-sm">
-              Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Possimus, voluptate.{" "}
+            Our commitment to quality and customer satisfaction sets us apart.
             </p>
             <br />
             <div className="flex items-center gap-3">
@@ -70,10 +71,12 @@ const Footer = () => {
                 </h1>
                 <ul className={`flex flex-col gap-3`}>
                   {FooterLinks.map((link) => (
-                    <li key={link.title} className="cursor-pointer hover:translate-x-1 duration-300 hover:!text-primary space-x-1 text-gray-500 dark:text-gray-200">
+                    <Link  key={link.title} to={link.link}>
+                      <li className="cursor-pointer hover:translate-x-1 duration-300 hover:!text-primary space-x-1 text-gray-500 dark:text-gray-200">
                       <span>&#11162;</span>
                       <span>{link.title}</span>
-                    </li>
+                      </li>
+                    </Link>
                   ))}
                 </ul>
               </div>
@@ -85,10 +88,12 @@ const Footer = () => {
                 </h1>
                 <ul className="flex flex-col gap-3">
                   {FooterLinks.map((link) => (
-                    <li key={link.title} className="cursor-pointer hover:translate-x-1 duration-300 hover:!text-primary space-x-1 text-gray-500 dark:text-gray-200">
-                      <span>&#11162;</span>
-                      <span>{link.title}</span>
+                    <Link  key={link.title} to={link.link}>
+                    <li  className="cursor-pointer hover:translate-x-1 duration-300 hover:!text-primary space-x-1 text-gray-500 dark:text-gray-200">
+                    <span>&#11162;</span>
+                    <span>{link.title}</span>
                     </li>
+                  </Link>
                   ))}
                 </ul>
               </div>
@@ -101,10 +106,12 @@ const Footer = () => {
                 {/* <ul className="list-disc list-inside"> */}
                 <ul className="flex flex-col gap-3">
                   {FooterLinks.map((link) => (
-                    <li key={link.title} className="cursor-pointer hover:translate-x-1 duration-300 hover:!text-primary space-x-1 text-gray-500 dark:text-gray-200">
-                      <span>&#11162;</span>
-                      <span>{link.title}</span>
+                    <Link  key={link.title} to={link.link}>
+                    <li className="cursor-pointer hover:translate-x-1 duration-300 hover:!text-primary space-x-1 text-gray-500 dark:text-gray-200">
+                    <span>&#11162;</span>
+                    <span>{link.title}</span>
                     </li>
+                  </Link>
                   ))}
                 </ul>
               </div>

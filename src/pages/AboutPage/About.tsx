@@ -9,7 +9,7 @@ const About = () => {
     return (
         <div>
              <CommonSection title="About Us" />
-      <AboutSection aboutClass="aboutPage" />
+       <AboutSection aboutClass="aboutPage" />
 
       <section className="my-8">
         <div className="container mx-auto">
@@ -22,16 +22,10 @@ const About = () => {
                 We Are Committed To Provide Safe Ride Solutions
               </h2>
               <p className="text-gray-600 mb-4">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Eveniet veniam assumenda aperiam accusantium ex autem
-                perferendis repellendus nostrum delectus. Nemo et dolore est
-                tempore rem minima adipisci magni dolorum ipsam.
+              We offer a seamless car rental experience tailored to your needs. With a wide selection of vehicles, we ensure that you find the perfect car for any occasion, whether it’s a business trip, a family vacation, or a weekend getaway.
               </p>
               <p className="text-gray-600">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Eveniet veniam assumenda aperiam accusantium ex autem
-                perferendis repellendus nostrum delectus. Nemo et dolore est
-                tempore rem minima adipisci magni dolorum ipsam.
+              Our commitment to quality and customer satisfaction sets us apart. From affordable options to luxury cars, we provide a range of vehicles that cater to every preference and budget.
               </p>
               <div className="flex items-center gap-3 mt-4">
                 <span className="text-2xl text-blue-700">

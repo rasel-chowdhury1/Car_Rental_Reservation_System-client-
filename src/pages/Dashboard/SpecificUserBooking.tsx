@@ -1,9 +1,8 @@
-import { Link } from "react-router-dom";
-import { useConfirmBookingCarMutation, useDeleteBookingCarMutation, useMyBookingQuery } from "../../redux/features/booking/CarBookingManagementApi";
-import { GiConfirmed } from "react-icons/gi";
+
+import {  useDeleteBookingCarMutation, useMyBookingQuery } from "../../redux/features/booking/CarBookingManagementApi";
+
 import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
-import getCurrentDateTime from "../../utils/getCurrentDateTime";
 import { TbTruckReturn } from "react-icons/tb";
 // import { useAppSelector } from "../../redux/hook";
 // import { useCurrentUser } from "../../redux/features/auth/authSlice";
@@ -15,7 +14,6 @@ const SpecificUserBooking = () => {
     const {data: userbooking,  isLoading} = useMyBookingQuery(undefined);
     // console.log({userbooking})
     const [deleteBookingCar] = useDeleteBookingCarMutation();
-    const [confirmBookingCar] = useConfirmBookingCarMutation();
 
     // console.log({userbooking})
     if(isLoading){
@@ -24,61 +22,6 @@ const SpecificUserBooking = () => {
 
     const bookings = userbooking?.data || [];
 
-
-
-
-    const handleConfirmBooking = async (bookingId:string,carId:string,carStatus:string,carDeleted:boolean) => {
-        
-        // console.log({bookingId, carId, carStatus, carDeleted})
-        if(carStatus === "UnAvailable"){
-            Swal.fire({
-              position: "top-end",
-              icon: "error",
-              title: "This car is not available in this moment.",
-              showConfirmButton: false,
-              timer: 1500
-            });
-          }
-        else if(carDeleted){
-            Swal.fire({
-                position: "top-end",
-                icon: "error",
-                title: "This car is deleted",
-                showConfirmButton: false,
-                timer: 1500
-              });
-        }
-        else{
-        const {date,currentTime} = getCurrentDateTime();
-        
-        try {
-            const data = {bookingId,carId,date,startTime: currentTime, isBooked: "Confirmed"}
-             await confirmBookingCar(data).unwrap();
-            // console.log({res})
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Successfully booking this car confirmed.",
-                showConfirmButton: false,
-                timer: 1500
-              });
-        } catch (error) {
-            // console.log({error})
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Something went wrong",
-                showConfirmButton: false,
-                timer: 1500
-              });
-            
-        }
-        }
-
-
-      
-      
-    }
 
     const handleDeleteBooking = async (bookingid: string, carName: string) => {
         Swal.fire({
@@ -110,6 +53,17 @@ const SpecificUserBooking = () => {
 
 
     return (
+      <>
+        {/* Heading */}
+     <h1
+          data-aos="fade-up"
+          className="text-3xl sm:text-4xl font-semibold font-serif mb-3 text-center"
+        >
+          Your Booking History
+        </h1>
+        <p data-aos="fade-up" aos-delay="400" className="text-sm pb-10  text-center">
+          Show all your car booking data.You can delete booking if admin not approve your booking.
+        </p>
         <div className="overflow-x-auto">
             <table className="table">
                 {/* head */}
@@ -155,26 +109,19 @@ const SpecificUserBooking = () => {
                     <td>{ele?.startTime}</td>
                     <th>
                     {ele?.isBooked === 'Confirmed' ? (
-    <Link to={`/dashboard/return/${ele?._id}`} 
+    <div
         className="btn btn-ghost btn-xs hover:bg-green-600 hover:text-white"
     >
-        <TbTruckReturn className="text-lg" /> Return
-    </Link>
+        <TbTruckReturn className="text-lg" /> Confirmed by Admin
+    </div>
 ) : ele?.isBooked === 'Ended' ? (
-    <button 
-        className="btn btn-ghost btn-xs hover:bg-blue-600 hover:text-white"
-        // onClick={() => handleDoneBooking(ele?._id)}
-    >
-        Done
-    </button>
-) : (
+    ele?.paymentStatus === 'Paid' ? (
+      <span className="text-green-600 font-bold">Payment Paid</span>
+    ) : (
+      <span className="text-red-600 font-bold">Payment Pending</span>
+    )
+  ): (
     <>
-        <button 
-            onClick={() => handleConfirmBooking(ele?._id, ele?.car?._id, ele?.car?.status, ele?.car?.isDeleted)} 
-            className="btn btn-ghost btn-xs hover:bg-green-600 hover:text-white"
-        >
-            <GiConfirmed className="text-lg"/> Confirm
-        </button>
         <button 
             onClick={() => handleDeleteBooking(ele?._id, ele?.car?.name)} 
             className="btn btn-ghost btn-xs hover:bg-yellow-400 hover:text-white"
@@ -191,6 +138,7 @@ const SpecificUserBooking = () => {
                 </tbody>
             </table>
         </div>
+      </>
     );
 };
 

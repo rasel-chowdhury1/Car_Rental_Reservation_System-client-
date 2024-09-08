@@ -12,8 +12,8 @@ const Contact = () => {
                 Let's collaborate on your upcoming car rental venture
               </h1>
               <p className="text-gray-400">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Exercitationem necessitatibus quasi et vel,{" "}
+              Get in touch with us. We will respond as soon as possible.
+Reach Out for any type of Inquiries.
               </p>
             </div>
             <div className="sm:grid sm:place-items-center">

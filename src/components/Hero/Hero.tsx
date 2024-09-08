@@ -2,6 +2,7 @@ import{ useEffect } from "react";
 import carPng from "../../assets/car.png";
 import yellowCar from "../../assets/banner-car.png";
 import AOS from "aos";
+import { Link } from "react-router-dom";
 interface HeroProps {
   theme: "light" | "dark"; // Assuming theme can only be "light" or "dark"
 }
@@ -38,9 +39,9 @@ const Hero: React.FC<HeroProps> = ({ theme }) => {
               Car Rental
             </h1>
             <p data-aos="fade-up" data-aos-delay="1000">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
-              veritatis explicabo quibusdam quae reprehenderit ab{" "}
+            Experience the ultimate convenience and comfort with our premium car rental service. Whether it's a business trip or a weekend getaway, we have the perfect car for you.
             </p>
+            <Link to="cars">
             <button
               data-aos="fade-up"
               data-aos-delay="1500"
@@ -51,6 +52,7 @@ const Hero: React.FC<HeroProps> = ({ theme }) => {
             >
               Book Now
             </button>
+            </Link>
           </div>
         </div>
       </div>

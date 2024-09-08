@@ -8,20 +8,23 @@ interface CarItemProps {
     name: string;
     pricePerHour: number;
     photo: string;
+    model: string;
+    features: string[];
+    isElectric: boolean;
   };
 }
 
 const CarItem: React.FC<CarItemProps>  = (props) => {
-  const { _id, name, pricePerHour, photo } = props.item;
+  const { _id, name, pricePerHour, photo,model,features , isElectric} = props.item;
 
   return (
     <Col lg="4" md="4" sm="6" className="mb-5">
-      <div className="border border-[#7c8a9736] p-5 rounded-sm">
+      <div className="h-full flex flex-col border border-[#7c8a9736] p-5 rounded-sm">
         <div className="mb-4">
-          <img src={photo} alt={name} className="w-full" />
+          <img src={photo} alt={name} className="w-full object-cover h-48" />
         </div>
 
-        <div className="mt-4">
+        <div className="mt-auto">
           <h4 className="text-2xl text-center font-semibold">{name}</h4>
           <h6 className="text-xl text-center mt-1 font-semibold">
             ${pricePerHour}.00 <span>/ Hour</span>
@@ -29,13 +32,13 @@ const CarItem: React.FC<CarItemProps>  = (props) => {
 
           <div className="flex flex-wrap items-center justify-between mt-3 mb-4 text-sm">
             <span className="flex items-center gap-1 text-yellow-500 text-lg">
-              <i className="ri-car-line"></i> model 3
+              <i className="ri-car-line"></i> {model}
             </span>
             <span className="flex items-center gap-1 text-yellow-500 text-lg">
-              <i className="ri-settings-2-line"></i> isElectric
+              <i className="ri-settings-2-line"></i> {isElectric ? "IsElectric": ""}
             </span>
             <span className="flex items-center gap-1 text-yellow-500 text-lg">
-              <i className="ri-timer-flash-line"></i> speed 500
+              <i className="ri-timer-flash-line"></i> {features[0]}
             </span>
           </div>
 
@@ -51,6 +54,7 @@ const CarItem: React.FC<CarItemProps>  = (props) => {
         </div>
       </div>
     </Col>
+
   );
 };
 

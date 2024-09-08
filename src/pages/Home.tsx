@@ -27,7 +27,7 @@ const Home = () => {
              <AppStoreBanner />
              <Contact />
              <button onClick={toggleTheme} className="mt-4">
-        Toggle Theme
+        
       </button>
         </div>
     );

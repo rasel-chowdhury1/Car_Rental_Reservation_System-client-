@@ -22,6 +22,7 @@ import PaymentHistory from "../pages/Dashboard/PaymentHistory.js";
 import PrivateRoute from "../components/layouts/PrivateRoute.js";
 import ReturnCarManagement from "../pages/Dashboard/ReturnCarManagement.js";
 import ManageBookingCar from "../pages/Dashboard/ManageBookingCar.js";
+import Profile from "../pages/Dashboard/Profile.js";
 
 
 export const router = createBrowserRouter([
@@ -55,10 +56,6 @@ export const router = createBrowserRouter([
         },
 
         {
-            path: "/booking-car",
-            element: <BookingCar />
-        },
-        {
           path: "/terms&condition",
           element:<TermsCondition />,
         },
@@ -81,6 +78,10 @@ export const router = createBrowserRouter([
           element: <DashboardHome/>
         },
         {
+          path: "bookings/:slug",
+          element: <PrivateRoute role="user"><BookingCar /></PrivateRoute>
+        },
+        {
           path: "user-management",
           element: <PrivateRoute role="admin"> <UserManagement /> </PrivateRoute>
         },
@@ -100,14 +101,17 @@ export const router = createBrowserRouter([
           path: "return-cars",
           element: <PrivateRoute role="admin"><ReturnCarManagement/></PrivateRoute>
         },
-
+        {
+          path: "profile",
+          element: <Profile/>
+        },
         // access user routes
         {
           path: "booking",
           element: <PrivateRoute role="user"> <SpecificUserBooking /></PrivateRoute>
         },
         {
-          path: "return/:id",
+          path: "checkout/:id",
           element:  <PrivateRoute role="user"> <CheckOutPage /></PrivateRoute>
         },
         {

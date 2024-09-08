@@ -32,6 +32,30 @@ const CarsManagementApi = baseApi.injectEndpoints({
       },
     }),
 
+    allBookings: builder.query({
+      query: (args?: QueryParam[]) => {
+        // console.log(args);
+        const params = new URLSearchParams();
+
+        if (args) {
+          args.forEach((item) => {
+            params.append(item.name, item.value as string);
+          });
+        }
+        return {
+          url: '/bookings',
+          method: 'GET',
+          params: params,
+        };
+      },
+      providesTags: ['booking'],
+      transformResponse: (response: TResponseRedux<TPayment[]>) => {
+        // console.log({response})
+        return {
+          data: response.data,
+        };
+      },
+    }),
     singleBooking: builder.query({
         query: (bookingId) => {
           return {
@@ -69,14 +93,22 @@ const CarsManagementApi = baseApi.injectEndpoints({
         method: 'PATCH',
         body: data,
       }),
-      invalidatesTags: ['booking'],
+      invalidatesTags: ['booking', "cars"],
+    }),
+    paymentbookingCar: builder.mutation({
+      query: (data) => ({
+        url: 'bookings/pay',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['booking', "cars"],
     }),
     deleteBookingCar: builder.mutation({
       query: (id) => ({
         url: `/bookings/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['booking'],
+      invalidatesTags: ['booking', "cars"],
     }),
     paymentHistoryByUser: builder.query({
       query: (userId) => {
@@ -92,15 +124,33 @@ const CarsManagementApi = baseApi.injectEndpoints({
         };
       },
     }),
+    projectSummary: builder.query({
+      query: () => {
+        return {
+          url: `summary`,
+          method: 'GET',
+        };
+      },
+      transformResponse: (response: TResponseRedux<{totalBookings: string,
+        totalAvailableCars: string,
+        totalRevenue: string}>) => {
+        return {
+          data: response.data,
+        };
+      },
+    }),
   }),
 });
 
 export const {
-  useMyBookingQuery, 
+  useMyBookingQuery,
+  useAllBookingsQuery,
   useSingleBookingQuery, 
   useBookingCarMutation, 
   useReturnbookingCarMutation, 
+  usePaymentbookingCarMutation,
   useDeleteBookingCarMutation,
   useConfirmBookingCarMutation,
-  usePaymentHistoryByUserQuery
+  usePaymentHistoryByUserQuery,
+  useProjectSummaryQuery
 } = CarsManagementApi;

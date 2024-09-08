@@ -8,6 +8,7 @@ interface ApiError {
   // add other properties if needed
 }
 
+//server side link = https://car-rental-reservation-system-phi.vercel.app/api
 const baseQuery = fetchBaseQuery({
     baseUrl: "https://car-rental-reservation-system-phi.vercel.app/api",
     credentials: "include",

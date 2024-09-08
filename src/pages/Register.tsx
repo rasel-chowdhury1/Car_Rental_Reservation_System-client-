@@ -17,7 +17,8 @@ const Register: React.FC = () => {
         password2: "",
         role: "user",
         phone: "",
-        address: ""
+        address: "",
+        terms: false
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -27,12 +28,12 @@ const Register: React.FC = () => {
         });
       };
     
-      const { email, name, password, password2, role, phone, address } = formdata;
+      const { email, name, password, password2, role, phone, address, terms } = formdata;
   
       const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError("")
-        console.log("before check ", formdata)
+        // console.log("before check ", formdata)
     
         if (!email || !name ||  !password || !password2 || !role || !address) {
           setError("All feilds is required...")
@@ -58,7 +59,7 @@ const Register: React.FC = () => {
           navigate("/login")
           
         } catch (error) {
-          console.log({error})
+          // console.log({error})
         }
        
       };
@@ -154,6 +155,25 @@ const Register: React.FC = () => {
                   onChange={handleChange}
                 />
                 {error && (<p className="mt-2 text-red-500 text-center">{error}</p>)}
+
+
+              <div className="flex items-start mt-2">
+            <input
+              type="checkbox"
+              name="terms"
+              checked={terms}
+              onChange={handleChange}
+              className="h-4 w-4 text-blue-600 border-gray-300 rounded"
+            />
+            <label className="ml-2 block text-sm text-gray-900">
+              I agree to the{' '}
+              <Link to="/terms&condition" target="_blank" className="text-blue-600 hover:underline">
+                Terms & Conditions
+              </Link>
+            </label>
+          </div>
+          {error && <span className="text-red-500 text-sm">{error}</span>}
+
               <button
                 type="submit"
                 className="mt-5 w-full text-white py-3 rounded-lg bg-gradient-to-r from-[#9d11bd] to-[#73e9fe] hover:from-[#73e9fe] hover:to-[#9d11bd]"

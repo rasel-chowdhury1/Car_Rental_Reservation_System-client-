@@ -13,7 +13,7 @@ import Swal from "sweetalert2";
 const Login = () => {
   const navigate = useNavigate()
   const [login, {isLoading}] = useLoginMutation();
-  console.log({isLoading})
+  // console.log({isLoading})
   const dispatch = useDispatch();
 
   const [logindata, setLogindata] = useState({

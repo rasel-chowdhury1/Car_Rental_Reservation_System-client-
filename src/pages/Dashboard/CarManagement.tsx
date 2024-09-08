@@ -49,6 +49,17 @@ const CarManagement = () => {
   };
 
   return (
+    <>
+     {/* Heading */}
+     <h1
+          data-aos="fade-up"
+          className="text-3xl sm:text-4xl font-semibold font-serif mb-3 text-center"
+        >
+          Manage Cars
+        </h1>
+        <p data-aos="fade-up" aos-delay="400" className="text-sm pb-10  text-center">
+          Show car data and admin can create update delete specific car.Just clicked button!
+        </p>
     <div className="overflow-x-auto shadow-xl rounded w-full m-4">
       <table className="table ">
         {/* head */}
@@ -134,6 +145,7 @@ const CarManagement = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 

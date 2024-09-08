@@ -3,10 +3,11 @@ import { RiSortAsc } from "react-icons/ri";
 import { useGetAllCarsQuery } from "../../redux/features/Cars/CarsManagementApi";
 import CarItem from "../CarItem/CarItem";
 import { TCar } from "../../types/car.type";
+import { Link } from "react-router-dom";
 
 
 
-const CarList = () => {
+const CarList = ({ status }: { status?: string }) => {
   const { data: CarsData, error, isLoading } = useGetAllCarsQuery(undefined);
 
   const [sortOrder, setSortOrder] = useState(''); // For sorting
@@ -34,9 +35,10 @@ const CarList = () => {
   // Apply filters
   const filteredCars =  Array.isArray(CarsData?.data) ? CarsData?.data.filter((car: TCar) => {
     return (
-      (carType ? car.type === carType : true) &&
+      (carType ? car!.model!.toLowerCase() === carType.toLowerCase() : true) &&
       (car.pricePerHour >= priceRange[0] && car.pricePerHour <= priceRange[1]) &&
-      (car.name.toLowerCase().includes(searchQuery) || car.description.toLowerCase().includes(searchQuery))
+      (car.name.toLowerCase().includes(searchQuery) || car.description.toLowerCase().includes(searchQuery)) &&
+      (status === "available" ? car.status === "available" : true)
     );
   }): [];
 
@@ -50,6 +52,8 @@ const CarList = () => {
     }
     return 0;
   });
+
+  console.log({sortedCars})
 
   if (isLoading) {
     return <h1>Data is loading...</h1>;
@@ -68,11 +72,11 @@ const CarList = () => {
         {/* Heading */}
         <h1
           data-aos="fade-up"
-          className="text-3xl sm:text-4xl font-semibold font-serif mb-3"
+          className="text-3xl sm:text-4xl font-semibold font-serif mb-3 text-center"
         >
           Car Listings
         </h1>
-        <p data-aos="fade-up" aos-delay="400" className="text-sm pb-10">
+        <p data-aos="fade-up" aos-delay="400" className="text-sm pb-10  text-center">
           Browse through our collection of cars. Apply filters to narrow down your search.
         </p>
 
@@ -127,7 +131,7 @@ const CarList = () => {
 
         {/* Car listing */}
         <div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {sortedCars?.map((car: TCar) => (
               <CarItem item={car} key={car._id} />
             ))}
@@ -135,9 +139,9 @@ const CarList = () => {
         </div>
         {/* End of car listing */}
         <div className="grid place-items-center mt-8">
-          <button data-aos="fade-up" className="button-outline">
+          <Link to="cars" data-aos="fade-up" className="button-outline">
             Get Started
-          </button>
+          </Link>
         </div>
       </div>
     </div>

@@ -17,8 +17,8 @@ export const Navlinks = [
   
   {
     id: 3,
-    name: "CARLIST",
-    link: "/cars",
+    name: "BOOKING",
+    link: "/dashboard/booking",
   },
   {
     id: 2,
@@ -40,7 +40,7 @@ const Navbar = ({ theme, setTheme}: {theme: String, setTheme:Function}) => {
     dispatch(logout())
   }
 
-  console.log({user})
+  // console.log({user})
   
   const [showMenu, setShowMenu] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -89,7 +89,7 @@ const Navbar = ({ theme, setTheme}: {theme: String, setTheme:Function}) => {
                     <ul className="absolute right-0 mt-2 py-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-xl z-20">
                       <li>
                         <Link
-                          to="/profile"
+                          to="/dashboard/profile"
                           className="block px-4 py-2 text-lg font-medium  hover:text-primary hover:border-b-2 hover:border-primary transition-colors duration-500 "
                         >
                           Profile

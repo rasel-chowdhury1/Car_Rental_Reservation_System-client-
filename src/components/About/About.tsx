@@ -23,12 +23,10 @@ const About = () => {
                 About us
               </h1>
               <p data-aos="fade-up" className="leading-8 tracking-wide">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Aspernatur, magnam! Tenetur odio quo et maxime?
+              Welcome to Car Rental, where we offer a seamless car rental experience tailored to your needs. 
               </p>
               <p data-aos="fade-up">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi,
-                tempora.
+              Our commitment to quality and customer satisfaction sets us apart. From affordable options to luxury cars, we provide a range of vehicles that cater to every preference and budget.
               </p>
               <button data-aos="fade-up" className="button-outline">
                 Get Started

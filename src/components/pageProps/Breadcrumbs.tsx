@@ -9,13 +9,13 @@ interface BreadcrumbsProps {
 
 
 const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ prevLocation, title }) => {
-  console.log({prevLocation})
+  // console.log({prevLocation})
   const location = useLocation();
   const [locationPath, setLocationPath] = useState("");
   useEffect(() => {
-    console.log({location})
+    // console.log({location})
     setLocationPath(location.pathname.split("/")[1]);
-    console.log({location})
+    // console.log({location})
   }, [location]);
 
   return (

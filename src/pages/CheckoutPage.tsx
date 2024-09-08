@@ -1,7 +1,6 @@
 
-import { useReturnbookingCarMutation, useSingleBookingQuery } from "../redux/features/booking/CarBookingManagementApi";
+import { usePaymentbookingCarMutation, useSingleBookingQuery } from "../redux/features/booking/CarBookingManagementApi";
 import { useParams } from "react-router-dom";
-import getCurrentDateTime from "../utils/getCurrentDateTime";
 import { useAppSelector } from "../redux/hook";
 import { useCurrentUser } from "../redux/features/auth/authSlice";
 import { TUser } from "../types/user.type";
@@ -14,38 +13,42 @@ export default function CheckOutPage() {
     // console.log({id})
     const { data: singleBookingData, isLoading } = useSingleBookingQuery(id);
     const user = useAppSelector(useCurrentUser) as TUser || null;
-    const [returnBookingCar] = useReturnbookingCarMutation()
+    const [paymentBookingCar] = usePaymentbookingCarMutation();
+
     if(isLoading){
         return <p>data is loading...</p>
     }
 
+    // console.log({singleBookingData})
+
     
-    const {date: endDate, currentTime: endTime} = getCurrentDateTime();
-    const {startTime, date: issueDate, car,_id: bookingId} = singleBookingData?.data || {};
-    const perHour = car?.pricePerHour || 0;
+  //   const {date: endDate, currentTime: endTime} = getCurrentDateTime();
+    const {_id: bookingId, totalCost: totalPrice,car, startTime, endTime} = singleBookingData?.data || {};
+    const totalCost = totalPrice || 0;
+    //   const perHour = car?.pricePerHour || 0;
     
 
 
-  const startDateTime = new Date(`${issueDate}T${startTime}`);
-  const endDateTime = new Date(`${endDate}T${endTime}`);
+  // const startDateTime = new Date(`${issueDate}T${startTime}`);
+  // const endDateTime = new Date(`${endDate}T${endTime}`);
 
-  // Calculate the difference in milliseconds
-  const timeDifferenceInMs = endDateTime.getTime() - startDateTime.getTime();
+  // // Calculate the difference in milliseconds
+  // const timeDifferenceInMs = endDateTime.getTime() - startDateTime.getTime();
 
-  // Convert milliseconds to hours
-  const timeDifferenceInHours = timeDifferenceInMs / (1000 * 60 * 60);
+  // // Convert milliseconds to hours
+  // const timeDifferenceInHours = timeDifferenceInMs / (1000 * 60 * 60);
 
-  // Calculate the total cost
-  const totalCost = timeDifferenceInHours * perHour;
+  // // Calculate the total cost
+  // const totalCost = timeDifferenceInHours * perHour;
+  const data = {bookingId, totalCost,user };
+      console.log("data -> ", {data})
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    // console.log(e.target.name.value)
+  const handleSubmit = async () => {
   
-    const data = {bookingId, endTime: endTime, totalCost,user };
-      // console.log({data})
+    const data = {bookingId, totalCost,user };
+      // console.log("data -> ", {data})
       try {
-        const res = await returnBookingCar(data).unwrap();
+        const res = await paymentBookingCar(data).unwrap();
         // console.log({res})
         window.location.href = res.data.payment_url;
       } catch (error) {
@@ -56,7 +59,7 @@ export default function CheckOutPage() {
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
       <h2 className="text-3xl font-bold mb-6">Checkout</h2>
-      <form onSubmit={handleSubmit}>
+      <div>
         <div className="mb-8 border p-5 rounded">
           <h3 className="text-xl font-semibold mb-4">User Information</h3>
           {user && (
@@ -137,24 +140,24 @@ export default function CheckOutPage() {
                   <td className="py-3 px-4">{car?.name}</td>
                   <td className="py-3 px-4">{startTime}</td>
                   <td className="py-3 px-4">{endTime}</td>
-                  <td className="py-3 px-4">{perHour}</td>
+                  <td className="py-3 px-4">{car?.pricePerHour}</td>
                 </tr>
 
             </tbody>
           </table>
 
-          <p className="mt-8"><span className="font-semibold text-lg">TotalCost :</span> {totalCost.toFixed(2)}</p>
+          <p className="mt-8"><span className="font-semibold text-lg">TotalCost :</span> {totalCost!.toFixed(2)}</p>
         </div>
 
         <div className="flex justify-end">
           <button
-            type="submit"
+            onClick={handleSubmit}
             className="bg-yellow-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-green-700 transition duration-300"
           >
             Proceed to Payment
           </button>
         </div>
-      </form>
+      </div>
     </div>
   );
 }

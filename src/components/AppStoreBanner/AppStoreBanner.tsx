@@ -27,8 +27,7 @@ const AppStoreBanner = () => {
               Get Started with our app
             </h1>
             <p data-aos="fade-up" className="text-center sm:px-20">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
-              magnam harum accusantium odit?
+            Enjoy unbeatable prices on our car rentals without compromising on quality. We offer competitive rates to ensure you get the best value for your money.
             </p>
             <div
               data-aos="fade-up"

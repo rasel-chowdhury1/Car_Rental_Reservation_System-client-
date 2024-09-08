@@ -6,7 +6,7 @@ const Car = () => {
     return (
         <div>
           <CommonSection title="Car Listing" />
-          <CarList />
+          <CarList/>
         </div>
     );
 };

@@ -1,0 +1,9 @@
+/* ZoomImage.css */
+.group:hover .group-hover\:scale-110 {
+    transform: scale(1.10);
+  }
+  
+  .group:hover .group-hover\:opacity-30 {
+    opacity: 0.30;
+  }
+  

@@ -14,24 +14,17 @@ const AboutSection = ({ aboutClass }:{aboutClass: string}) => {
               Welcome to car rent service
             </h2>
             <p className="text-gray-600 mb-4">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Voluptatum blanditiis esse accusantium dignissimos labore laborum.
-              Veniam, corporis mollitia temporibus, in quaerat vero deleniti
-              amet dolorem repudiandae, pariatur nam dolore! Impedit neque sit
-              ad temporibus quam similique dolor ipsam praesentium sunt.
+            We offer a seamless car rental experience tailored to your needs. With a wide selection of vehicles, we ensure that you find the perfect car for any occasion, whether it’s a business trip, a family vacation, or a weekend getaway.
             </p>
             <div className="flex flex-col gap-2">
               <p className="flex items-center gap-2 text-gray-600">
-                <i className="ri-checkbox-circle-line text-blue-700"></i> Lorem
-                ipsum dolor sit amet.
+                <i className="ri-checkbox-circle-line text-blue-700"></i> Our commitment to quality and customer satisfaction sets us apart.
               </p>
               <p className="flex items-center gap-2 text-gray-600">
-                <i className="ri-checkbox-circle-line text-blue-700"></i> Lorem
-                ipsum dolor sit amet.
+                <i className="ri-checkbox-circle-line text-blue-700"></i> We provide a range of vehicles.
               </p>
               <p className="flex items-center gap-2 text-gray-600">
-                <i className="ri-checkbox-circle-line text-blue-700"></i> Lorem
-                ipsum dolor sit amet.
+                <i className="ri-checkbox-circle-line text-blue-700"></i> That cater to every preference and budget.
               </p>
             </div>
           </div>

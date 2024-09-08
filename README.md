@@ -1,50 +1,127 @@
-# React + TypeScript + Vite
+# Car Rental Reservation System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+The Car Rental Reservation System is a comprehensive platform designed for both customers and administrators to browse, book, and manage car rentals. This project features a user-friendly interface, responsive design, and robust functionalities for managing cars, bookings, and user accounts.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used
 
-## Expanding the ESLint configuration
+- **Frontend:** React, TypeScript, Tailwind CSS
+- **Backend:** Node.js, Express.js, MongoDB (Mongoose)
+- **Payment Gateway:** AmarPay (local payment methods)
+- **Other Libraries:** Redux, React Router, React Icons
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Features
 
-- Configure the top-level `parserOptions` property like this:
+### Public Pages
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+1. **Home Page**
+   - Header with navigation and login/sign-up buttons
+   - Hero section with banner image 
+   - Featured cars carousel or grid
+   - Unique selling points and customer testimonials
+   - Footer with social media links and legal information
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. **Car Listing Page**
+   - Grid or list view of available cars
+   - Filters for car type, price range, and features
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+3. **Car Details Page**
+   - Detailed information, images, and additional features
+   - "Book Now" button leading to the booking page
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+4. **About Us Page**
+   - Company history, team profiles, fleet information, and contact details
+
+5. **Error Page**
+   - Custom 404 page and error messages for backend API issues
+   - Navigation options to return to safe pages
+
+6. **User Authentication Pages**
+   - Sign Up: User registration with validation and error handling
+   - Sign In: User login with password 
+
+### User Pages
+
+7. **User Dashboard**
+   - Overview of personal information and booking history
+   - Booking management with modification and cancellation options
+   - Payment management for returning cars
+
+### Admin Pages
+
+8. **Admin Dashboard**
+   - Summary view with key statistics
+   - Manage cars (add, update, delete) with image upload
+   - Manage bookings (approve, cancel)
+   - Manage returned cars and update availability
+   - User management with role and access control options
+
+### Booking Page
+
+9. **Booking Page**
+   - Booking form with personal details,Nid and Lisence
+   - Booking confirmation page with details review
+
+### Responsive Design & UI/UX
+
+- Fully responsive design for mobile, tablet, and desktop
+- Intuitive navigation and consistent branding elements
+
+### Bonus Features
+
+- **Payment System:** Secure payment gateway integration for post-return payments
+- **Theme Switcher:** Dark/light/system theme switcher
+
+## Setup & Installation
+
+### Frontend
+
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/yourusername/car-rental-reservation-system.git
+    ```
+2. Navigate to the frontend directory:
+    ```bash
+    cd car-rental-reservation-system/frontend
+    ```
+3. Install dependencies:
+    ```bash
+    npm install
+    ```
+4. Start the development server:
+    ```bash
+    npm start
+    ```
+
+### Backend
+
+1. Navigate to the backend directory:
+    ```bash
+    cd car-rental-reservation-system/backend
+    ```
+2. Install dependencies:
+    ```bash
+    npm install
+    ```
+3. Set up environment variables (refer to `.env.example` for required variables).
+4. Start the server:
+    ```bash
+    npm start
+    ```
+
+## Contribution
+
+Contributions are welcome! Please submit a pull request with your proposed changes.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## References
+
+- [KAYAK Car Rentals](https://www.kayak.com/cars)
+- [Convene](https://www.gorentals.co.nz)
+
+For any questions or issues, feel free to open an issue or contact me directly.
+

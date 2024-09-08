@@ -10,7 +10,7 @@ const skillsData = [
       <FaCameraRetro className="text-5xl text-primary group-hover:text-black duration-300" />
     ),
     link: "#",
-    description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    description: " Enjoy unbeatable prices on our car rentals without compromising on quality. ",
     aosDelay: "0",
   },
   {
@@ -19,7 +19,7 @@ const skillsData = [
       <GiNotebook className="text-5xl text-primary group-hover:text-black duration-300" />
     ),
     link: "#",
-    description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    description: "We prioritize efficiency to minimize waiting time and get you driving without delay.",
     aosDelay: "500",
   },
   {
@@ -28,7 +28,7 @@ const skillsData = [
       <SlNote className="text-5xl text-primary group-hover:text-black duration-500" />
     ),
     link: "#",
-    description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    description: "Our vehicles are well-maintained, and our drivers are experienced professionals, ensuring etc",
     aosDelay: "1000",
   },
 ];

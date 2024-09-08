@@ -4,7 +4,6 @@ import { useState } from "react";
 import { LuBox, LuMessageSquare, } from "react-icons/lu";
 import { RiReservedLine } from "react-icons/ri";
 import { FaCar, FaUser } from "react-icons/fa";
-import { BiSolidReport } from "react-icons/bi";
 import { TbUsers } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../redux/hook";
@@ -25,7 +24,7 @@ const Sidebar = () => {
     setActiveLink(index);
   };
   const USER_LINKS = [
-    { id: 1, path: "/", name: "Dashboard", icon: <LuBox/> },
+    { id: 1, path: "/dashboard", name: "Dashboard", icon: <LuBox/> },
     { id: 2, path: "booking", name: "Booking List", icon: <RiReservedLine/>},
     { id: 3, path: "payment-history", name: "Payment", icon: <LuMessageSquare/> },
     { id: 4, path: "profile", name: "Profile", icon: <FaUser/> },
@@ -34,14 +33,12 @@ const Sidebar = () => {
 
   const ADMIN_LINKS = [
     { id: 1, path: "/dashboard", name: "Dashboard", icon: <LuBox /> },
-    { id: 2, path: "/dashboard/user-management", name: "User Management", icon: <TbUsers />},
-    { id: 3, path: "/dashboard/manage-cars", name: "Manage Cars", icon: <FaCar />},
-    { id: 4, path: "/dashboard/create-car", name: "Create a Car", icon: <FaCar />},
-    { id: 8, path: "/dashboard/manage-booking", name: "Manage Booking", icon: <FaCar />},
-
-    { id: 5, path: "/dashboard/return-cars", name: "Manage Return Cars", icon: <LuMessageSquare /> },
-    { id: 6, path: "/dashboard/report", name: "Report", icon: <BiSolidReport/> },
-    { id: 7, path: "/dashboard/profile", name: "Profile", icon: <FaUser /> },
+    { id: 2, path: "/dashboard/manage-cars", name: "Manage Cars", icon: <FaCar />},
+    { id: 3, path: "/dashboard/manage-booking", name: "Manage Booking", icon: <FaCar />},
+    { id: 4, path: "/dashboard/return-cars", name: "Manage Return Cars", icon: <LuMessageSquare /> },
+    { id: 5, path: "/dashboard/user-management", name: "User Management", icon: <TbUsers />},
+    { id: 6, path: "/dashboard/create-car", name: "Create a Car", icon: <FaCar />},
+    { id: 8, path: "/dashboard/profile", name: "Profile", icon: <FaUser /> },
   ];
   return (
     <div className="w-16 md:w-56 fixed left-0 top-0 z-10 h-screen boder-r pt-8 px-4 bg-white">

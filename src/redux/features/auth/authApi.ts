@@ -53,9 +53,25 @@ const authApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ['users'], // Invalidates the 'Users' tag to refetch the users list after the role is updated
           }),
+          updateUserActivity: builder.mutation({
+            query: ({ userId, isActive }) => ({
+              url: `/auth/users/${userId}/role`,
+              method: 'PATCH',
+              body: { isActive }, // Send the new role in the request body
+            }),
+            invalidatesTags: ['users'], // Invalidates the 'Users' tag to refetch the users list after the role is updated
+          }),
+          updateProfile: builder.mutation({
+            query: (data: any) => ({
+              url: `/auth/update-profile`,
+              method: 'PATCH',
+              body: data, // Send the new role in the request body
+            }),
+            invalidatesTags: ['users'], // Invalidates the 'Users' tag to refetch the users list after the role is updated
+          }),
       
 
     })
 })
 
-export const {useLoginMutation, useSignUpMutation, useGetAllUsersQuery,useUpdateUserRoleMutation } = authApi
+export const {useLoginMutation, useSignUpMutation, useGetAllUsersQuery,useUpdateUserRoleMutation,useUpdateProfileMutation } = authApi
