@@ -114,14 +114,6 @@ The Car Rental Reservation System is a comprehensive platform designed for both 
 
 Contributions are welcome! Please submit a pull request with your proposed changes.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## References
-
-- [KAYAK Car Rentals](https://www.kayak.com/cars)
-- [Convene](https://www.gorentals.co.nz)
 
 For any questions or issues, feel free to open an issue or contact me directly.
 
