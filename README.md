@@ -79,11 +79,11 @@ The Car Rental Reservation System is a comprehensive platform designed for both 
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/car-rental-reservation-system.git
+    git clone https://github.com/rasel-chowdhury/Car_Rental_Reservation_System-client-.git
     ```
 2. Navigate to the frontend directory:
     ```bash
-    cd car-rental-reservation-system/frontend
+    cd /frontend
     ```
 3. Install dependencies:
     ```bash
